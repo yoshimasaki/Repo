@@ -55,7 +55,6 @@ class ViewController: UITableViewController, UISearchBarDelegate {
             // これ呼ばなきゃリストが更新されません
             searchSessionDataTask?.resume()
         }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -78,13 +77,11 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         cell.detailTextLabel?.text = repository["language"] as? String ?? ""
         cell.tag = indexPath.row
         return cell
-
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         lastSelectedRowIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
-
     }
 }
