@@ -12,12 +12,12 @@ final class SearchViewModel {
     @Published var state: SearchViewModelState = .none
     @Published var error: SearchViewModelError?
 
-    private(set) var repositories: [[String: Any]] = []
+    private(set) var repositories: [RepositoryEntity] = []
 
     private var searchSessionDataTask: URLSessionTask?
     var lastSelectedRowIndex = 0
 
-    var lastSelectedRepository: [String: Any] {
+    var lastSelectedRepository: RepositoryEntity {
         repositories[lastSelectedRowIndex]
     }
 
@@ -41,12 +41,14 @@ final class SearchViewModel {
                     return
                 }
 
-                guard let repositories = weakSelf.repositories(from: data!) else {
-                    return
-                }
+                do {
+                    let repositories = try weakSelf.repositories(from: data!)
 
-                weakSelf.repositories = repositories
-                weakSelf.state = .repositoriesUpdated
+                    weakSelf.repositories = repositories
+                    weakSelf.state = .repositoriesUpdated
+                } catch {
+                    weakSelf.error = .jsonDecodeError(error: error)
+                }
             }
 
             searchSessionDataTask!.resume()
@@ -59,19 +61,9 @@ final class SearchViewModel {
         searchSessionDataTask?.cancel()
     }
 
-    private func repositories(from data: Data) -> [[String: Any]]? {
-        do {
-            if
-                let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                let items = jsonObject["items"] as? [[String: Any]]
-            {
-                return items
-            }
-        } catch {
-            print("Failed to decode JSON data - error: \(error.localizedDescription)")
-            return nil
-        }
+    private func repositories(from data: Data) throws -> [RepositoryEntity] {
+        let result = try JSONDecoder.decoder.decode(SearchResultEntity.self, from: data)
 
-        return nil
+        return result.items
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 final class RepositoryDetailViewController: UIViewController {
 
-    var repository: [String: Any] {
+    var repository: RepositoryEntity? {
         get {
             viewModel.repository
         }
