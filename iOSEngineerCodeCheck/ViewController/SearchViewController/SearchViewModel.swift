@@ -30,7 +30,7 @@ final class SearchViewModel {
         do {
             let searchApiUrl = try GitHubApi.searchUrl(with: searchTerm)
 
-            searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, _, error) in
+            searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, response, error) in
 
                 guard let weakSelf = self else {
                     return
@@ -38,6 +38,16 @@ final class SearchViewModel {
 
                 if let error = error {
                     weakSelf.error = .faildFetch(error: error)
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    print("Failed to get HTTPURLResponse - response: \(response!)")
+                    return
+                }
+
+                guard httpResponse.isStatusOk else {
+                    weakSelf.error = .invalidHttpStatus(statusCode: httpResponse.statusCode)
                     return
                 }
 

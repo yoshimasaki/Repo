@@ -11,6 +11,7 @@ import Foundation
 enum RepositoryDetailViewModelError: LocalizedError {
     case cannotMakeUrl(urlString: String)
     case faildFetch(error: Error)
+    case invalidHttpStatus(statusCode: Int)
 
     var errorDescription: String? {
         switch self {
@@ -19,6 +20,9 @@ enum RepositoryDetailViewModelError: LocalizedError {
 
         case .faildFetch(error: let error):
             return "Faild to fetch avatar image - error: \(error.localizedDescription)"
+
+        case .invalidHttpStatus(statusCode: let statusCode):
+            return "Invalid HTTP status code (\(statusCode)"
         }
     }
 }

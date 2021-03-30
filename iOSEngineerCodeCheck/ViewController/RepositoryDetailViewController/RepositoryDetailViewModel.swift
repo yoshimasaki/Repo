@@ -46,10 +46,20 @@ final class RepositoryDetailViewModel {
                 return
             }
 
-            let dataTask = URLSession.shared.dataTask(with: avatarImageUrl) { (data, _, error) in
+            let dataTask = URLSession.shared.dataTask(with: avatarImageUrl) { (data, response, error) in
 
                 if let error = error {
                     completion?(.failure(.faildFetch(error: error)))
+                    return
+                }
+
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    print("Failed to get HTTPURLResponse - response: \(response!)")
+                    return
+                }
+
+                guard httpResponse.isStatusOk else {
+                    completion?(.failure(.invalidHttpStatus(statusCode: httpResponse.statusCode)))
                     return
                 }
 
