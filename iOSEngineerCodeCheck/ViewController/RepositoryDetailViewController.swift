@@ -33,16 +33,29 @@ class RepositoryDetailViewController: UIViewController {
 
     func fetchAvatarImage() {
         repositoryNameLabel.text = repository["full_name"] as? String
-
-        if let owner = repository["owner"] as? [String: Any] {
-            if let avatarImageUrl = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: avatarImageUrl)!) { (data, res, err) in
-                    let image = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.avatarImageView.image = image
-                    }
-                }.resume()
+        
+        if
+            let owner = repository["owner"] as? [String: Any],
+            let avatarImageUrlString = owner["avatar_url"] as? String
+        {
+            guard let avatarImageUrl = URL(string: avatarImageUrlString) else {
+                print("Cannot make avatar image URL from \(avatarImageUrlString)")
+                return
             }
+
+            let dataTask = URLSession.shared.dataTask(with: avatarImageUrl) { (data, _, error) in
+
+                if let error = error {
+                    print("Faild to fetch avatar image - error: \(error.localizedDescription)")
+                    return
+                }
+
+                let image = UIImage(data: data!)
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = image
+                }
+            }
+            dataTask.resume()
         }
     }
 }
