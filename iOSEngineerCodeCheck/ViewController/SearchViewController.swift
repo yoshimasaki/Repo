@@ -82,8 +82,14 @@ extension SearchViewController: UISearchBarDelegate {
             return
         }
 
-        viewModel.searchRepository(by: searchTerm) {
-            self.tableView.reloadData()
+        viewModel.searchRepository(by: searchTerm) { [weak self] result in
+            switch result {
+            case .failure(let error as LocalizedError):
+                print(error.errorDescription ?? "")
+
+            case .success:
+                self?.tableView.reloadData()
+            }
         }
     }
 }

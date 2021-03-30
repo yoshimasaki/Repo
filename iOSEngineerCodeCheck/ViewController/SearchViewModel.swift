@@ -19,7 +19,7 @@ final class SearchViewModel {
     }
 
     // MARK: - Search Reposotory
-    func searchRepository(by searchTerm: String, completion: (() -> Void)?) {
+    func searchRepository(by searchTerm: String, completion: ((Result<(), SearchViewModelError>) -> Void)?) {
         guard !searchTerm.isEmpty else {
             return
         }
@@ -34,8 +34,7 @@ final class SearchViewModel {
                 }
 
                 if let error = error {
-                    // TODO: show network error to user
-                    print("Faild to fetch search repository - error: \(error.localizedDescription)")
+                    completion?(.failure(.faildFetch(error: error)))
                     return
                 }
 
@@ -45,7 +44,7 @@ final class SearchViewModel {
 
                 weakSelf.repositories = repositories
                 DispatchQueue.main.async {
-                    completion?()
+                    completion?(.success(()))
                 }
             }
 
