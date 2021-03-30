@@ -30,8 +30,7 @@ final class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchBar.placeholder = R.string.localizable.searchGitHubRepository()
-        searchBar.delegate = self
+        configureViews()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,6 +59,12 @@ final class SearchViewController: UITableViewController {
         // tableView の行をタップした時に呼ばれる
         lastSelectedRowIndex = indexPath.row
         performSegue(withIdentifier: Constants.Segue.repositoryDetailViewController, sender: self)
+    }
+
+    // MARK: - Configure Views
+    private func configureViews() {
+        searchBar.placeholder = R.string.localizable.searchGitHubRepository()
+        searchBar.delegate = self
     }
 
     // MARK: - Search Reposotory
