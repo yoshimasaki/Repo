@@ -10,6 +10,15 @@ import UIKit
 
 final class RepositoryDetailViewController: UIViewController {
 
+    var repository: [String: Any] {
+        get {
+            viewModel.repository
+        }
+        set {
+            viewModel.repository = newValue
+        }
+    }
+
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var repositoryNameLabel: UILabel!
     @IBOutlet private weak var languageLabel: UILabel!
@@ -18,7 +27,7 @@ final class RepositoryDetailViewController: UIViewController {
     @IBOutlet private weak var forkCountLabel: UILabel!
     @IBOutlet private weak var openIssueCountLabel: UILabel!
 
-    var repository: [String: Any] = [:]
+    private let viewModel = RepositoryDetailViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
