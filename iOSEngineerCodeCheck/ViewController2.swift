@@ -10,44 +10,41 @@ import UIKit
 
 class ViewController2: UIViewController {
 
-    @IBOutlet weak var ImgView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var repositoryNameLabel: UILabel!
+    @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var starCountLabel: UILabel!
+    @IBOutlet weak var watchCountLabel: UILabel!
+    @IBOutlet weak var forkCountLabel: UILabel!
+    @IBOutlet weak var openIssueCountLabel: UILabel!
 
-    @IBOutlet weak var TtlLbl: UILabel!
-
-    @IBOutlet weak var LangLbl: UILabel!
-
-    @IBOutlet weak var StrsLbl: UILabel!
-    @IBOutlet weak var WchsLbl: UILabel!
-    @IBOutlet weak var FrksLbl: UILabel!
-    @IBOutlet weak var IsssLbl: UILabel!
-
-    var vc1: ViewController!
+    var searchViewController: ViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let repo = vc1.repo[vc1.idx]
+        let repository = searchViewController.repositories[searchViewController.lastSelectedRowIndex]
 
-        LangLbl.text = "Written in \(repo["language"] as? String ?? "")"
-        StrsLbl.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        WchsLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        FrksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        IsssLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
-        getImage()
+        languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
+        starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
+        watchCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
+        forkCountLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
+        openIssueCountLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
+        fetchAvatarImage()
     }
 
-    func getImage() {
+    func fetchAvatarImage() {
 
-        let repo = vc1.repo[vc1.idx]
+        let repository = searchViewController.repositories[searchViewController.lastSelectedRowIndex]
 
-        TtlLbl.text = repo["full_name"] as? String
+        repositoryNameLabel.text = repository["full_name"] as? String
 
-        if let owner = repo["owner"] as? [String: Any] {
-            if let imgURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
-                    let img = UIImage(data: data!)!
+        if let owner = repository["owner"] as? [String: Any] {
+            if let avatarImageUrl = owner["avatar_url"] as? String {
+                URLSession.shared.dataTask(with: URL(string: avatarImageUrl)!) { (data, res, err) in
+                    let image = UIImage(data: data!)!
                     DispatchQueue.main.async {
-                        self.ImgView.image = img
+                        self.avatarImageView.image = image
                     }
                 }.resume()
             }
