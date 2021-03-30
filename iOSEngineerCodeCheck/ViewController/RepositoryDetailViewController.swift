@@ -23,6 +23,7 @@ class RepositoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        repositoryNameLabel.text = repository["full_name"] as? String
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         watchCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
@@ -32,8 +33,6 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     func fetchAvatarImage() {
-        repositoryNameLabel.text = repository["full_name"] as? String
-        
         if
             let owner = repository["owner"] as? [String: Any],
             let avatarImageUrlString = owner["avatar_url"] as? String
