@@ -23,13 +23,17 @@ class RepositoryDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureViews()
+        fetchAvatarImage()
+    }
+
+    private func configureViews() {
         repositoryNameLabel.text = repository["full_name"] as? String
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
         watchCountLabel.text = "\(repository["wachers_count"] as? Int ?? 0) watchers"
         forkCountLabel.text = "\(repository["forks_count"] as? Int ?? 0) forks"
         openIssueCountLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
-        fetchAvatarImage()
     }
 
     func fetchAvatarImage() {
