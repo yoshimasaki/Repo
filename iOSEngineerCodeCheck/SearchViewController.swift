@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController, UISearchBarDelegate {
+class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
@@ -22,24 +22,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         // Do any additional setup after loading the view.
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
-    }
-
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        // ↓こうすれば初期のテキストを消せる
-        searchBar.text = ""
-        return true
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchSessionDataTask?.cancel()
-    }
-
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text else {
-            return
-        }
-
-        searchRepository(by: searchTerm)
     }
 
     private func searchRepository(by searchTerm: String) {
@@ -121,5 +103,26 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         // 画面遷移時に呼ばれる
         lastSelectedRowIndex = indexPath.row
         performSegue(withIdentifier: "Detail", sender: self)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        // ↓こうすれば初期のテキストを消せる
+        searchBar.text = ""
+        return true
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchSessionDataTask?.cancel()
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchTerm = searchBar.text else {
+            return
+        }
+
+        searchRepository(by: searchTerm)
     }
 }
