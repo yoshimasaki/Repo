@@ -53,7 +53,7 @@ class SearchViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // 画面遷移時に呼ばれる
+        // tableView の行をタップした時に呼ばれる
         lastSelectedRowIndex = indexPath.row
         performSegue(withIdentifier: Constants.Segue.repositoryDetailViewController, sender: self)
     }
