@@ -26,7 +26,7 @@ class SearchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchBar.placeholder = "GitHubのリポジトリを検索できるよー"
+        searchBar.placeholder = R.string.localizable.searchGitHubRepository()
         searchBar.delegate = self
     }
 
