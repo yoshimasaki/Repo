@@ -10,13 +10,13 @@ import UIKit
 
 class RepositoryDetailViewController: UIViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var repositoryNameLabel: UILabel!
-    @IBOutlet weak var languageLabel: UILabel!
-    @IBOutlet weak var starCountLabel: UILabel!
-    @IBOutlet weak var watchCountLabel: UILabel!
-    @IBOutlet weak var forkCountLabel: UILabel!
-    @IBOutlet weak var openIssueCountLabel: UILabel!
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var repositoryNameLabel: UILabel!
+    @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var starCountLabel: UILabel!
+    @IBOutlet private weak var watchCountLabel: UILabel!
+    @IBOutlet private weak var forkCountLabel: UILabel!
+    @IBOutlet private weak var openIssueCountLabel: UILabel!
 
     var repository: [String: Any] = [:]
 
@@ -36,7 +36,7 @@ class RepositoryDetailViewController: UIViewController {
         openIssueCountLabel.text = "\(repository["open_issues_count"] as? Int ?? 0) open issues"
     }
 
-    func fetchAvatarImage() {
+    private func fetchAvatarImage() {
         if
             let owner = repository["owner"] as? [String: Any],
             let avatarImageUrlString = owner["avatar_url"] as? String

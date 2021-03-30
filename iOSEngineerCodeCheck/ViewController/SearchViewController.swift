@@ -10,17 +10,17 @@ import UIKit
 
 class SearchViewController: UITableViewController {
 
-    enum Constants {
+    private enum Constants {
         enum Segue {
             static let repositoryDetailViewController = "Detail"
         }
     }
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet private weak var searchBar: UISearchBar!
 
     private var repositories: [[String: Any]] = []
 
-    var searchSessionDataTask: URLSessionTask?
+    private var searchSessionDataTask: URLSessionTask?
     private var lastSelectedRowIndex: Int!
 
     private var lastSelectedRepository: [String: Any] {
