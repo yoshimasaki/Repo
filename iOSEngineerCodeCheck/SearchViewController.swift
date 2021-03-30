@@ -10,6 +10,12 @@ import UIKit
 
 class SearchViewController: UITableViewController {
 
+    enum Constants {
+        enum Segue {
+            static let repositoryDetailViewController = "Detail"
+        }
+    }
+
     @IBOutlet weak var searchBar: UISearchBar!
 
     var repositories: [[String: Any]] = []
@@ -25,7 +31,7 @@ class SearchViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == "Detail" else {
+        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == Constants.Segue.repositoryDetailViewController else {
             return
         }
 
@@ -49,7 +55,7 @@ class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // 画面遷移時に呼ばれる
         lastSelectedRowIndex = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
+        performSegue(withIdentifier: Constants.Segue.repositoryDetailViewController, sender: self)
     }
 
     // MARK: - Search Reposotory
