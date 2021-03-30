@@ -1,0 +1,16 @@
+disabled_rules:
+
+excluded:
+  - Pods
+  - Carthage
+  - SourcePackages
+  - Generated
+  - R.generated.swift
+
+line_length:
+  warning: 300
+  error: 500
+
+identifier_name:
+  min_length:
+    warning: 1
