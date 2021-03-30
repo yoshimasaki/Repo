@@ -25,11 +25,11 @@ class SearchViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "Detail"{
-            let detailViewController = segue.destination as! RepositoryDetailViewController
-            detailViewController.searchViewController = self
+        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == "Detail" else {
+            return
         }
+
+        detailViewController.searchViewController = self
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
