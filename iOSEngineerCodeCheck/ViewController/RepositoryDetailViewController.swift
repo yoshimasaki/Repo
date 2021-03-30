@@ -18,12 +18,10 @@ class RepositoryDetailViewController: UIViewController {
     @IBOutlet weak var forkCountLabel: UILabel!
     @IBOutlet weak var openIssueCountLabel: UILabel!
 
-    var searchViewController: SearchViewController!
+    var repository: [String: Any] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let repository = searchViewController.repositories[searchViewController.lastSelectedRowIndex]
 
         languageLabel.text = "Written in \(repository["language"] as? String ?? "")"
         starCountLabel.text = "\(repository["stargazers_count"] as? Int ?? 0) stars"
@@ -34,9 +32,6 @@ class RepositoryDetailViewController: UIViewController {
     }
 
     func fetchAvatarImage() {
-
-        let repository = searchViewController.repositories[searchViewController.lastSelectedRowIndex]
-
         repositoryNameLabel.text = repository["full_name"] as? String
 
         if let owner = repository["owner"] as? [String: Any] {

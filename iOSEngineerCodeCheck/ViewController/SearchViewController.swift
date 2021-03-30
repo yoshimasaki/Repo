@@ -18,10 +18,14 @@ class SearchViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var repositories: [[String: Any]] = []
+    private var repositories: [[String: Any]] = []
 
     var searchSessionDataTask: URLSessionTask?
-    var lastSelectedRowIndex: Int!
+    private var lastSelectedRowIndex: Int!
+
+    private var lastSelectedRepository: [String: Any] {
+        repositories[lastSelectedRowIndex]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +39,7 @@ class SearchViewController: UITableViewController {
             return
         }
 
-        detailViewController.searchViewController = self
+        detailViewController.repository = lastSelectedRepository
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
