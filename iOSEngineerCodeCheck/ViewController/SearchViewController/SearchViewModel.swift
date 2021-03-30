@@ -9,6 +9,9 @@
 import Foundation
 
 final class SearchViewModel {
+    @Published var state: SearchViewModelState = .none
+    @Published var error: SearchViewModelError?
+
     private(set) var repositories: [[String: Any]] = []
 
     private var searchSessionDataTask: URLSessionTask?
@@ -19,7 +22,7 @@ final class SearchViewModel {
     }
 
     // MARK: - Search Reposotory
-    func searchRepository(by searchTerm: String, completion: ((Result<(), SearchViewModelError>) -> Void)?) {
+    func searchRepository(by searchTerm: String) {
         guard !searchTerm.isEmpty else {
             return
         }
@@ -34,7 +37,7 @@ final class SearchViewModel {
                 }
 
                 if let error = error {
-                    completion?(.failure(.faildFetch(error: error)))
+                    weakSelf.error = .faildFetch(error: error)
                     return
                 }
 
@@ -43,9 +46,7 @@ final class SearchViewModel {
                 }
 
                 weakSelf.repositories = repositories
-                DispatchQueue.main.async {
-                    completion?(.success(()))
-                }
+                weakSelf.state = .repositoriesUpdated
             }
 
             searchSessionDataTask!.resume()

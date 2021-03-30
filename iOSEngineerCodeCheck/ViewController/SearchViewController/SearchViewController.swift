@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class SearchViewController: UITableViewController {
 
@@ -19,11 +20,14 @@ final class SearchViewController: UITableViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
 
     private let viewModel = SearchViewModel()
+    private var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
+        subscribeState()
+        subscribeError()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,6 +69,34 @@ final class SearchViewController: UITableViewController {
 
         return cell
     }
+
+    // MARK: - Subscriptions
+    private func subscribeState() {
+        viewModel.$state
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (state) in
+                self?.handleState(state)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeError() {
+        viewModel.$error
+            .sink { (error) in
+                print(error?.errorDescription ?? "")
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func handleState(_ state: SearchViewModelState) {
+        switch state {
+        case .none:
+            break
+
+        case .repositoriesUpdated:
+            tableView.reloadData()
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -82,14 +114,6 @@ extension SearchViewController: UISearchBarDelegate {
             return
         }
 
-        viewModel.searchRepository(by: searchTerm) { [weak self] result in
-            switch result {
-            case .failure(let error as LocalizedError):
-                print(error.errorDescription ?? "")
-
-            case .success:
-                self?.tableView.reloadData()
-            }
-        }
+        viewModel.searchRepository(by: searchTerm)
     }
 }
