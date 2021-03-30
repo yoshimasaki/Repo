@@ -36,7 +36,7 @@ class ViewController2: UIViewController {
         getImage()
     }
 
-    func getImage(){
+    func getImage() {
 
         let repo = vc1.repo[vc1.idx]
 
