@@ -12,7 +12,7 @@ final class SearchViewController: UITableViewController {
 
     private enum Constants {
         enum Segue {
-            static let repositoryDetailViewController = "Detail"
+            static let showRepositoryDetailViewController = "showRepositoryDetailViewController"
         }
     }
 
@@ -34,7 +34,7 @@ final class SearchViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == Constants.Segue.repositoryDetailViewController else {
+        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == Constants.Segue.showRepositoryDetailViewController else {
             return
         }
 
@@ -58,7 +58,7 @@ final class SearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // tableView の行をタップした時に呼ばれる
         lastSelectedRowIndex = indexPath.row
-        performSegue(withIdentifier: Constants.Segue.repositoryDetailViewController, sender: self)
+        performSegue(withIdentifier: Constants.Segue.showRepositoryDetailViewController, sender: self)
     }
 
     // MARK: - Configure Views
