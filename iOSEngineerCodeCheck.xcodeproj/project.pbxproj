@@ -157,9 +157,7 @@
 		92F4C0D92612F81B007C90AF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
-				92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */,
-				92FBE4FD26135C45005E9B9A /* SearchViewModelError.swift */,
+				92FBE50226135F19005E9B9A /* SearchViewController */,
 				92FBE4EF261353A7005E9B9A /* RepositoryDetailViewController */,
 			);
 			path = ViewController;
@@ -182,6 +180,16 @@
 				92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */,
 			);
 			path = RepositoryDetailViewController;
+			sourceTree = "<group>";
+		};
+		92FBE50226135F19005E9B9A /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+				92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */,
+				92FBE4FD26135C45005E9B9A /* SearchViewModelError.swift */,
+			);
+			path = SearchViewController;
 			sourceTree = "<group>";
 		};
 		BFD945D2244DC5E80012785A = {
