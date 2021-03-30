@@ -46,13 +46,7 @@ final class SearchViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = UITableViewCell()
-        let repository = repositories[indexPath.row]
-        cell.textLabel?.text = repository["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = repository["language"] as? String ?? ""
-        cell.tag = indexPath.row
-        return cell
+        configureCell(for: tableView, at: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -65,6 +59,15 @@ final class SearchViewController: UITableViewController {
     private func configureViews() {
         searchBar.placeholder = R.string.localizable.searchGitHubRepository()
         searchBar.delegate = self
+    }
+
+    private func configureCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let repository = repositories[indexPath.row]
+        cell.textLabel?.text = repository["full_name"] as? String ?? ""
+        cell.detailTextLabel?.text = repository["language"] as? String ?? ""
+        cell.tag = indexPath.row
+        return cell
     }
 
     // MARK: - Search Reposotory
