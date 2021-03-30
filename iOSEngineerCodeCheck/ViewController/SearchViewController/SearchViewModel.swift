@@ -51,7 +51,7 @@ final class SearchViewModel {
 
             searchSessionDataTask!.resume()
         } catch {
-            print("Cannot make url from \(searchTerm)")
+            self.error = .cannotMakeUrl(urlString: searchTerm)
         }
     }
 
