@@ -64,8 +64,8 @@ final class SearchViewController: UITableViewController {
         }
 
         let repository = viewModel.repositories[indexPath.row]
-        cell.textLabel?.text = repository["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = repository["language"] as? String ?? ""
+        cell.textLabel?.text = repository.fullName
+        cell.detailTextLabel?.text = repository.language
 
         return cell
     }

@@ -11,6 +11,7 @@ import Foundation
 enum SearchViewModelError: LocalizedError {
     case cannotMakeUrl(urlString: String)
     case faildFetch(error: Error)
+    case jsonDecodeError(error: Error)
 
     var errorDescription: String? {
         switch self {
@@ -19,6 +20,9 @@ enum SearchViewModelError: LocalizedError {
 
         case .faildFetch(error: let error):
             return "Faild to fetch search repository - error: \(error.localizedDescription)"
+
+        case .jsonDecodeError(error: let error):
+            return "Faild to decode JSON from data - error: \(error.localizedDescription)"
         }
     }
 }

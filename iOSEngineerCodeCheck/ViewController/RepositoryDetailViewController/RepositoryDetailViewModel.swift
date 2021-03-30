@@ -10,36 +10,36 @@ import UIKit
 
 final class RepositoryDetailViewModel {
 
-    var repository: [String: Any] = [:]
+    var repository: RepositoryEntity?
 
     var repositoryName: String {
-        repository["full_name"] as? String ?? ""
+        repository?.fullName ?? ""
     }
 
     var languageText: String {
-        "Written in \(repository["language"] as? String ?? "")"
+        "Written in \(repository?.language ?? "")"
     }
 
     var starCountText: String {
-        "\(repository["stargazers_count"] as? Int ?? 0) stars"
+        "\(repository?.stargazersCount ?? 0) stars"
     }
 
     var watchCountText: String {
-        "\(repository["watchers_count"] as? Int ?? 0) watchers"
+        "\(repository?.watchersCount ?? 0) watchers"
     }
 
     var forkCountText: String {
-        "\(repository["forks_count"] as? Int ?? 0) forks"
+        "\(repository?.forksCount ?? 0) forks"
     }
 
     var openIssueCount: String {
-        "\(repository["open_issues_count"] as? Int ?? 0) open issues"
+        "\(repository?.openIssuesCount ?? 0) open issues"
     }
 
     func fetchAvatarImage(completion: ((Result<UIImage?, RepositoryDetailViewModelError>) -> Void)?) {
         if
-            let owner = repository["owner"] as? [String: Any],
-            let avatarImageUrlString = owner["avatar_url"] as? String
+            let owner = repository?.owner,
+            let avatarImageUrlString = owner.avatarUrl
         {
             guard let avatarImageUrl = URL(string: avatarImageUrlString) else {
                 completion?(.failure(.cannotMakeUrl(urlString: avatarImageUrlString)))
