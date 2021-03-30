@@ -21,7 +21,7 @@ final class SearchViewController: UITableViewController {
     private var repositories: [[String: Any]] = []
 
     private var searchSessionDataTask: URLSessionTask?
-    private var lastSelectedRowIndex: Int!
+    private var lastSelectedRowIndex = 0
 
     private var lastSelectedRepository: [String: Any] {
         repositories[lastSelectedRowIndex]
