@@ -13,6 +13,7 @@
 		9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */; };
 		924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480802613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift */; };
 		924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480852613DA3400A8DEF2 /* RepositoryLicenseEntity.swift */; };
+		9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */; };
 		9293DA33261309A200B7F2B8 /* GitHubApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9293DA32261309A200B7F2B8 /* GitHubApiError.swift */; };
 		92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4C0C32612E09E007C90AF /* R.generated.swift */; };
 		92F4C0DB2612F8EB007C90AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F4C0DA2612F8EB007C90AF /* Localizable.strings */; };
@@ -59,6 +60,7 @@
 		9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEntity.swift; sourceTree = "<group>"; };
 		924480802613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryOwnerEntity.swift; sourceTree = "<group>"; };
 		924480852613DA3400A8DEF2 /* RepositoryLicenseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryLicenseEntity.swift; sourceTree = "<group>"; };
+		9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Decoders.swift"; sourceTree = "<group>"; };
 		92515F1C2612DA48005A6905 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9293DA32261309A200B7F2B8 /* GitHubApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiError.swift; sourceTree = "<group>"; };
 		92F4C0C32612E09E007C90AF /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			path = Entity;
 			sourceTree = "<group>";
 		};
+		9244808A2613DAA500A8DEF2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		92F4C0D42612F7E1007C90AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +251,7 @@
 		BFD945DD244DC5E80012785A /* iOSEngineerCodeCheck */ = {
 			isa = PBXGroup;
 			children = (
+				9244808A2613DAA500A8DEF2 /* Extensions */,
 				92F4C0E2261307AB007C90AF /* Foundation */,
 				924480722613D6D700A8DEF2 /* Entity */,
 				92F4C0D82612F812007C90AF /* Delegate */,
@@ -554,6 +565,7 @@
 				92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */,
 				9293DA33261309A200B7F2B8 /* GitHubApiError.swift in Sources */,
 				92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */,
+				9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */,
 				924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */,
 				9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
