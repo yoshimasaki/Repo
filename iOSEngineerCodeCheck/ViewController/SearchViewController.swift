@@ -76,36 +76,35 @@ final class SearchViewController: UITableViewController {
             return
         }
 
-        let searchApiUrlString = "https://api.github.com/search/repositories?q=\(searchTerm)"
-        guard let searchApiUrl = URL(string: searchApiUrlString) else {
-            print("Cannot make url from \(searchApiUrlString)")
-            return
+        do {
+            let searchApiUrl = try GitHubApi.searchUrl(with: searchTerm)
+
+            searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, _, error) in
+
+                guard let weakSelf = self else {
+                    return
+                }
+
+                if let error = error {
+                    // TODO: show network error to user
+                    print("Faild to fetch search repository - error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let repositories = weakSelf.repositories(from: data!) else {
+                    return
+                }
+
+                weakSelf.repositories = repositories
+                DispatchQueue.main.async {
+                    weakSelf.tableView.reloadData()
+                }
+            }
+
+            searchSessionDataTask!.resume()
+        } catch {
+            print("Cannot make url from \(searchTerm)")
         }
-
-        searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, _, error) in
-
-            guard let weakSelf = self else {
-                return
-            }
-
-            if let error = error {
-                // TODO: show network error to user
-                print("Faild to fetch search repository - error: \(error.localizedDescription)")
-                return
-            }
-
-            guard let repositories = weakSelf.repositories(from: data!) else {
-                return
-            }
-
-            weakSelf.repositories = repositories
-            DispatchQueue.main.async {
-                weakSelf.tableView.reloadData()
-            }
-        }
-
-        // dataTask の実行
-        searchSessionDataTask!.resume()
     }
 
     private func repositories(from data: Data) -> [[String: Any]]? {
