@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+final class SearchViewController: UITableViewController {
 
     private enum Constants {
         enum Segue {
