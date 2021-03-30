@@ -62,11 +62,14 @@ final class SearchViewController: UITableViewController {
     }
 
     private func configureCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoryCell, for: indexPath) else {
+            fatalError("\(R.reuseIdentifier.repositoryCell) setup is incorrect")
+        }
+
         let repository = repositories[indexPath.row]
         cell.textLabel?.text = repository["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = repository["language"] as? String ?? ""
-        cell.tag = indexPath.row
+
         return cell
     }
 
