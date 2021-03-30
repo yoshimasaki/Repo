@@ -152,8 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
-				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
-				92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */,
+				92FBE4EF261353A7005E9B9A /* RepositoryDetailViewController */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -165,6 +164,15 @@
 				9293DA32261309A200B7F2B8 /* GitHubApiError.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		92FBE4EF261353A7005E9B9A /* RepositoryDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
+				92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */,
+			);
+			path = RepositoryDetailViewController;
 			sourceTree = "<group>";
 		};
 		BFD945D2244DC5E80012785A = {
