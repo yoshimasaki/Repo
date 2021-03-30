@@ -12,6 +12,30 @@ final class RepositoryDetailViewModel {
 
     var repository: [String: Any] = [:]
 
+    var repositoryName: String {
+        repository["full_name"] as? String ?? ""
+    }
+
+    var languageText: String {
+        "Written in \(repository["language"] as? String ?? "")"
+    }
+
+    var starCountText: String {
+        "\(repository["stargazers_count"] as? Int ?? 0) stars"
+    }
+
+    var watchCountText: String {
+        "\(repository["watchers_count"] as? Int ?? 0) watchers"
+    }
+
+    var forkCountText: String {
+        "\(repository["forks_count"] as? Int ?? 0) forks"
+    }
+
+    var openIssueCount: String {
+        "\(repository["open_issues_count"] as? Int ?? 0) open issues"
+    }
+
     func fetchAvatarImage(completion: ((Result<UIImage?, RepositoryDetailViewModelError>) -> Void)?) {
         if
             let owner = repository["owner"] as? [String: Any],
