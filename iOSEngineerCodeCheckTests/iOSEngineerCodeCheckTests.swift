@@ -9,7 +9,9 @@
 import XCTest
 @testable import iOSEngineerCodeCheck
 
+// swiftlint:disable:next type_name
 class iOSEngineerCodeCheckTests: XCTestCase {
+// swiftlint:disable:previous type_name
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
