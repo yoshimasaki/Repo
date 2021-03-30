@@ -15,8 +15,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var repositories: [[String: Any]] = []
 
     var searchSessionDataTask: URLSessionTask?
-    var searchTerm: String!
-    var searchApiUrl: String!
     var lastSelectedRowIndex: Int!
 
     override func viewDidLoad() {
@@ -37,24 +35,64 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        searchTerm = searchBar.text!
-
-        if searchTerm.count != 0 {
-            searchApiUrl = "https://api.github.com/search/repositories?q=\(searchTerm!)"
-            searchSessionDataTask = URLSession.shared.dataTask(with: URL(string: searchApiUrl)!) { (data, response, error) in
-                if let jsonObject = try! JSONSerialization.jsonObject(with: data!) as? [String: Any] {
-                    if let items = jsonObject["items"] as? [[String: Any]] {
-                        self.repositories = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-            // これ呼ばなきゃリストが更新されません
-            searchSessionDataTask?.resume()
+        guard let searchTerm = searchBar.text else {
+            return
         }
+
+        searchRepository(by: searchTerm)
+    }
+
+    private func searchRepository(by searchTerm: String) {
+        guard !searchTerm.isEmpty else {
+            return
+        }
+
+        let searchApiUrlString = "https://api.github.com/search/repositories?q=\(searchTerm)"
+        guard let searchApiUrl = URL(string: searchApiUrlString) else {
+            print("Cannot make url from \(searchApiUrlString)")
+            return
+        }
+
+        searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, _, error) in
+
+            guard let weakSelf = self else {
+                return
+            }
+
+            if let error = error {
+                // TODO: show network error to user
+                print("Faild to fetch search repository - error: \(error.localizedDescription)")
+                return
+            }
+
+            guard let repositories = weakSelf.repositories(from: data!) else {
+                return
+            }
+
+            weakSelf.repositories = repositories
+            DispatchQueue.main.async {
+                weakSelf.tableView.reloadData()
+            }
+        }
+
+        // dataTask の実行
+        searchSessionDataTask!.resume()
+    }
+
+    private func repositories(from data: Data) -> [[String: Any]]? {
+        do {
+            if
+                let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any],
+                let items = jsonObject["items"] as? [[String: Any]]
+            {
+                return items
+            }
+        } catch {
+            print("Failed to decode JSON data - error: \(error.localizedDescription)")
+            return nil
+        }
+
+        return nil
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
