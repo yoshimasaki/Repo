@@ -23,6 +23,11 @@ final class StatusValueView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateColor(_ color: UIColor) {
+        iconView.tintColor = color
+        label.textColor = color
+    }
+
     private func configureViews() {
         label.font = UIFont.systemFont(ofSize: 18)
     }

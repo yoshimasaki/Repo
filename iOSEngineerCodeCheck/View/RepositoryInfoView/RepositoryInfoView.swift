@@ -49,6 +49,13 @@ final class RepositoryInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateStatusViewsColor(_ color: UIColor) {
+        starStatusView.updateColor(color)
+        watchStatusView.updateColor(color)
+        forkStatusView.updateColor(color)
+        openIssueStatusView.updateColor(color)
+    }
+
     private func configureViews() {
         layer.cornerRadius = 20
         layer.cornerCurve = .continuous
