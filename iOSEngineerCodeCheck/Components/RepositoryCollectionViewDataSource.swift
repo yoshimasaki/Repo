@@ -39,9 +39,22 @@ final class RepositoryCollectionViewDataSource {
             }
 
             let repository = item.repository
+            let infoView = cell.repositoryInfoView
 
-            // TODO: need provide repository info to cell
-            // cell
+            if
+                let urlString = repository.owner.avatarUrl,
+                let url = URL(string: urlString)
+            {
+                infoView.avatarImagePublisher = ImagePublisher.imagePublisher(url: url)
+            }
+
+            infoView.repositoryNameLabel.text = repository.fullName
+            infoView.descriptionLabel.text = repository.description
+            infoView.starStatusView.label.text = "\(repository.stargazersCount)"
+            infoView.watchStatusView.label.text = "\(repository.watchersCount)"
+            infoView.forkStatusView.label.text = "\(repository.forksCount)"
+            infoView.openIssueStatusView.label.text = "\(repository.openIssuesCount)"
+            infoView.languageStatusView.label.text = repository.language
 
             return cell
         })
