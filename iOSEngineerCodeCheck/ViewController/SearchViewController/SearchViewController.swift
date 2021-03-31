@@ -41,6 +41,7 @@ final class SearchViewController: UIViewController {
     private func configureViews() {
         searchField.placeholder = R.string.localizable.searchGitHubRepository()
 
+        collectionView.backgroundColor = .systemBackground
         collectionView.alwaysBounceVertical = true
         collectionView.keyboardDismissMode = .interactive
     }
