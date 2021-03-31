@@ -45,6 +45,7 @@ final class SearchViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.alwaysBounceVertical = true
         collectionView.keyboardDismissMode = .interactive
+        collectionView.delegate = self
     }
 
     private func configureConstraints() {
@@ -170,5 +171,22 @@ final class SearchViewController: UIViewController {
             }
             viewModel.searchRepository(by: searchTerm)
         }
+    }
+
+    private func transitionToDetailView() {
+        guard let detailViewController = storyboard?.instantiateViewController(withResource: R.storyboard.main.repositoryDetailViewController) else {
+            return
+        }
+
+        detailViewController.repository = viewModel.lastSelectedRepository
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.lastSelectedRowIndex = indexPath.item
+        transitionToDetailView()
     }
 }
