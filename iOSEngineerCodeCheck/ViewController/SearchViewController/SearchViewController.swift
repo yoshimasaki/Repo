@@ -31,6 +31,12 @@ final class SearchViewController: UIViewController {
         subscribeSearchFieldState()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        updateCollectionViewContentInset()
+    }
+
     // MARK: - Configure Views
     private func configureViews() {
         searchField.placeholder = R.string.localizable.searchGitHubRepository()
@@ -43,15 +49,15 @@ final class SearchViewController: UIViewController {
         searchField.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(searchField)
         view.addSubview(collectionView)
+        view.addSubview(searchField)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
             searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
 
-            collectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 16),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -75,6 +81,10 @@ final class SearchViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
 
         return layout
+    }
+
+    private func updateCollectionViewContentInset() {
+        collectionView.contentInset.top = searchField.frame.maxY + 8
     }
 
     // MARK: - Subscriptions
