@@ -111,7 +111,7 @@ final class RepositoryInfoView: UIView {
             avatarImageView.widthAnchor.constraint(equalToConstant: 30),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
 
-            repositoryNameLabel.centerYAnchor.constraint(equalTo: avatarImageView.centerYAnchor),
+            repositoryNameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor),
             repositoryNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8),
             repositoryNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
