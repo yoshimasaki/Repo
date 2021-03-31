@@ -17,9 +17,9 @@ struct GitHubApiClient {
     }
 
     func searchUrl(with searchTerm: String) throws -> URL {
-        let urlString = gitHubSearchApiUrlBaseString + searchTerm
-
-        // FIXME: need url percent encode
+        guard let urlString = (gitHubSearchApiUrlBaseString + searchTerm).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            throw GitHubApiClientError.cannotMakeUrl(searchTerm: searchTerm)
+        }
 
         guard let url = URL(string: urlString) else {
             throw GitHubApiClientError.cannotMakeUrl(searchTerm: searchTerm)

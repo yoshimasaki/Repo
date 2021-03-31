@@ -29,7 +29,7 @@ class GitHubApiClientTests: XCTestCase {
         XCTAssertEqual(url.absoluteString, "https://api.github.com/search/repositories?q=swift")
 
         url = try XCTUnwrap(try? client.searchUrl(with: "swift linked list"))
-        XCTAssertEqual(url.absoluteString, "")
+        XCTAssertEqual(url.absoluteString, "https://api.github.com/search/repositories?q=swift%20linked%20list")
     }
 
     func testSearchRepository_success() throws {
