@@ -85,8 +85,7 @@ final class RepositoryInfoView: UIView {
 
         let starImage = UIImage(systemName: "star")
         let watchImage = UIImage(systemName: "eye")
-        // TODO: replace fork asset icon
-        let forkImage = UIImage(systemName: "star")
+        let forkImage = UIImage(resource: R.image.fork)
         let openIssueImage = UIImage(systemName: "exclamationmark.circle")
         let languageImage = UIImage(systemName: "circlebadge.fill")
 
