@@ -16,12 +16,15 @@ final class SearchViewController: UIViewController {
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    private let collectionViewDataSource = RepositoryCollectionViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
         configureConstraints()
+        registCollectionViewCell()
+        configreCollectionViewDataSource()
         subscribeState()
         subscribeError()
         subscribeSearchFieldText()
@@ -53,6 +56,14 @@ final class SearchViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private func configreCollectionViewDataSource() {
+        collectionViewDataSource.configreCollectionViewDataSource(collectionView: collectionView)
+    }
+
+    private func registCollectionViewCell() {
+        collectionView.register(RepositoryCell.self, forCellWithReuseIdentifier: RepositoryCell.reuseIdentifier)
     }
 
     private var collectionViewLayout: UICollectionViewCompositionalLayout {
@@ -109,7 +120,7 @@ final class SearchViewController: UIViewController {
             break
 
         case .repositoriesUpdated:
-            break
+            collectionViewDataSource.updateDataSource(with: viewModel.repositories)
         }
     }
 
