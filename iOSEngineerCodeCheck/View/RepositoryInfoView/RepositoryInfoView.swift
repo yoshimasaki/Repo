@@ -11,6 +11,16 @@ import Combine
 
 final class RepositoryInfoView: UIView {
 
+    var repository: RepositoryEntity? {
+        didSet {
+            guard let repository = self.repository else {
+                return
+            }
+
+            update(with: repository)
+        }
+    }
+
     var avatarImagePublisher: AnyPublisher<UIImage?, Never>? {
         didSet {
             subscribeAvatarImage()
@@ -135,6 +145,49 @@ final class RepositoryInfoView: UIView {
             statusStackView.trailingAnchor.constraint(equalTo: repositoryNameLabel.trailingAnchor),
             statusStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+    }
+
+    private func update(with repository: RepositoryEntity) {
+        if
+            let urlString = repository.owner.avatarUrl,
+            let url = URL(string: urlString)
+        {
+            avatarImagePublisher = ImagePublisher.imagePublisher(url: url)
+        }
+
+        repositoryNameLabel.text = repository.fullName
+        descriptionLabel.text = repository.description
+        starStatusView.label.text = "\(repository.stargazersCount)"
+        watchStatusView.label.text = "\(repository.watchersCount)"
+        forkStatusView.label.text = "\(repository.forksCount)"
+        openIssueStatusView.label.text = "\(repository.openIssuesCount)"
+        languageStatusView.label.text = repository.language
+
+        if let language = repository.language {
+            let languageColor = GitHubLanguageColor.shared.color(for: language)
+            let lightColor = languageColor.add(hue: 0, saturation: 0, brightness: 0.3, alpha: 0)
+            let labelColor = languageColor.add(hue: 0, saturation: -0.3, brightness: -0.6, alpha: 0)
+            let secondaryLabelColor = languageColor.add(hue: 0, saturation: -0.3, brightness: -0.4, alpha: 0)
+            let statusColor = UIColor.systemBackground.add(hue: 0, saturation: 0, brightness: 0, alpha: -0.2)
+
+            updateStatusViewsColor(statusColor)
+            languageStatusView.iconView.tintColor = languageColor
+            languageStatusView.label.textColor = secondaryLabelColor
+            repositoryNameLabel.textColor = labelColor
+            descriptionLabel.textColor = secondaryLabelColor
+            backgroundColor = lightColor
+            layer.shadowColor = lightColor.cgColor
+            layer.shadowOpacity = 1
+        } else {
+            updateStatusViewsColor(.systemGray3)
+            languageStatusView.iconView.tintColor = nil
+            languageStatusView.label.textColor = .label
+            repositoryNameLabel.textColor = .label
+            descriptionLabel.textColor = .secondaryLabel
+            backgroundColor = .systemBackground
+            layer.shadowColor = UIColor.black.cgColor
+            layer.shadowOpacity = 0.1
+        }
     }
 
     private func subscribeAvatarImage() {
