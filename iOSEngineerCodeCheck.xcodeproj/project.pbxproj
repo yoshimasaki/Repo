@@ -17,6 +17,7 @@
 		923721F7261455AF0082B90F /* RepositoryInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721F6261455AF0082B90F /* RepositoryInfoView.swift */; };
 		923721FC26146D570082B90F /* StatusValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721FB26146D570082B90F /* StatusValueView.swift */; };
 		9237220126146E280082B90F /* ImagePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9237220026146E280082B90F /* ImagePublisher.swift */; };
+		9237220726146EA90082B90F /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9237220626146EA90082B90F /* RepositoryCell.swift */; };
 		923FD4C3261362FE00935125 /* SearchViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923FD4C2261362FE00935125 /* SearchViewModelState.swift */; };
 		924480772613D9F100A8DEF2 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480762613D9F100A8DEF2 /* SearchResultEntity.swift */; };
 		9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */; };
@@ -82,6 +83,7 @@
 		923721F6261455AF0082B90F /* RepositoryInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryInfoView.swift; sourceTree = "<group>"; };
 		923721FB26146D570082B90F /* StatusValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusValueView.swift; sourceTree = "<group>"; };
 		9237220026146E280082B90F /* ImagePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePublisher.swift; sourceTree = "<group>"; };
+		9237220626146EA90082B90F /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		923FD4C2261362FE00935125 /* SearchViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelState.swift; sourceTree = "<group>"; };
 		924480762613D9F100A8DEF2 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEntity.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		923721C8261443570082B90F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9237220526146E840082B90F /* RepositoryCell */,
 				923721F5261455A70082B90F /* RepositoryInfoView */,
 				923721C92614436D0082B90F /* SearchField */,
 			);
@@ -232,6 +235,14 @@
 				923721FB26146D570082B90F /* StatusValueView.swift */,
 			);
 			path = RepositoryInfoView;
+			sourceTree = "<group>";
+		};
+		9237220526146E840082B90F /* RepositoryCell */ = {
+			isa = PBXGroup;
+			children = (
+				9237220626146EA90082B90F /* RepositoryCell.swift */,
+			);
+			path = RepositoryCell;
 			sourceTree = "<group>";
 		};
 		924480722613D6D700A8DEF2 /* Entity */ = {
@@ -750,6 +761,7 @@
 				924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */,
 				923721CB261443760082B90F /* SearchField.swift in Sources */,
 				9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */,
+				9237220726146EA90082B90F /* RepositoryCell.swift in Sources */,
 				927FC54D2613E96C00DC9812 /* URLFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
