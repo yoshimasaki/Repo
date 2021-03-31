@@ -10,5 +10,7 @@ import Foundation
 
 enum SearchViewModelState {
     case none
+    case loading
+    case loaded
     case repositoriesUpdated
 }

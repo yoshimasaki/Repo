@@ -29,10 +29,13 @@ final class SearchViewModel {
 
     // MARK: - Search Reposotory
     func searchRepository(by searchTerm: String) {
+        state = .loading
         apiClient.searchRepository(by: searchTerm) { [weak self] (result) in
             guard let weakSelf = self else {
                 return
             }
+
+            weakSelf.state = .loaded
 
             switch result {
             case .failure(let error):
