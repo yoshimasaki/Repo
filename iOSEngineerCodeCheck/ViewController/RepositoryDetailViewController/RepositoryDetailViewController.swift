@@ -42,7 +42,7 @@ final class RepositoryDetailViewController: UIViewController {
         starCountLabel.text = viewModel.starCountText
         watchCountLabel.text = viewModel.watchCountText
         forkCountLabel.text = viewModel.forkCountText
-        openIssueCountLabel.text = viewModel.openIssueCount
+        openIssueCountLabel.text = viewModel.openIssueCountText
     }
 
     private func fetchAvatarImage() {

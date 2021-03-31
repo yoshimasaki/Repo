@@ -32,13 +32,13 @@ final class RepositoryDetailViewModel {
         "\(repository?.forksCount ?? 0) forks"
     }
 
-    var openIssueCount: String {
+    var openIssueCountText: String {
         "\(repository?.openIssuesCount ?? 0) open issues"
     }
 
-    private let fetcher: URLFetcher
+    private let fetcher: URLFetchable
 
-    init(fetcher: URLFetcher = URLFetcher()) {
+    init(fetcher: URLFetchable = URLFetcher()) {
         self.fetcher = fetcher
     }
 
