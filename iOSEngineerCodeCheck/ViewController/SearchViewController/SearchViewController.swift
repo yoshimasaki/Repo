@@ -17,7 +17,7 @@ final class SearchViewController: UITableViewController {
         }
     }
 
-    @IBOutlet private weak var searchBar: UISearchBar!
+    private let searchField = SearchField(frame: .zero)
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -26,8 +26,11 @@ final class SearchViewController: UITableViewController {
         super.viewDidLoad()
 
         configureViews()
+        configureConstraints()
         subscribeState()
         subscribeError()
+        subscribeSearchFieldText()
+        subscribeSearchFieldState()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,8 +57,19 @@ final class SearchViewController: UITableViewController {
 
     // MARK: - Configure Views
     private func configureViews() {
-        searchBar.placeholder = R.string.localizable.searchGitHubRepository()
-        searchBar.delegate = self
+        searchField.placeholder = R.string.localizable.searchGitHubRepository()
+    }
+
+    private func configureConstraints() {
+        searchField.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(searchField)
+
+        NSLayoutConstraint.activate([
+            searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
+        ])
     }
 
     private func configureCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -88,6 +102,25 @@ final class SearchViewController: UITableViewController {
             .store(in: &subscriptions)
     }
 
+    private func subscribeSearchFieldText() {
+        searchField.$text
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.global())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (searchText) in
+                self?.handleSearchFieldTextDidChange(searchText)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func subscribeSearchFieldState() {
+        searchField.$state
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (state) in
+                self?.handleSearchFiledSate(state)
+            }
+            .store(in: &subscriptions)
+    }
+
     private func handleState(_ state: SearchViewModelState) {
         switch state {
         case .none:
@@ -97,23 +130,27 @@ final class SearchViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-}
 
-extension SearchViewController: UISearchBarDelegate {
-
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        true
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    private func handleSearchFieldTextDidChange(_ searchText: String?) {
         viewModel.cancelSearch()
     }
 
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchTerm = searchBar.text else {
-            return
-        }
+    private func handleSearchFiledSate(_ state: SearchFieldState) {
+        switch state {
+        case .none:
+            break
 
-        viewModel.searchRepository(by: searchTerm)
+        case .didBeginEditing:
+            break
+
+        case .didEndEditing:
+            break
+
+        case .searchButtonClicked:
+            guard let searchTerm = searchField.text else {
+                return
+            }
+            viewModel.searchRepository(by: searchTerm)
+        }
     }
 }
