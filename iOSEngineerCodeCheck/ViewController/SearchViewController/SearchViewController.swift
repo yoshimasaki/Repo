@@ -13,6 +13,7 @@ final class SearchViewController: UIViewController {
 
     private let searchField = SearchField(frame: .zero)
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -49,9 +50,11 @@ final class SearchViewController: UIViewController {
     private func configureConstraints() {
         searchField.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
         view.addSubview(searchField)
+        view.addSubview(activityIndicator)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -61,7 +64,10 @@ final class SearchViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 
@@ -131,6 +137,12 @@ final class SearchViewController: UIViewController {
         switch state {
         case .none:
             break
+
+        case .loading:
+            activityIndicator.startAnimating()
+
+        case .loaded:
+            activityIndicator.stopAnimating()
 
         case .repositoriesUpdated:
             collectionViewDataSource.updateDataSource(with: viewModel.repositories)
