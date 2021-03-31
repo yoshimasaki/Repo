@@ -32,7 +32,7 @@ final class RepositoryDetailViewModel {
         "\(repository?.forksCount ?? 0) forks"
     }
 
-    var openIssueCount: String {
+    var openIssueCountText: String {
         "\(repository?.openIssuesCount ?? 0) open issues"
     }
 
