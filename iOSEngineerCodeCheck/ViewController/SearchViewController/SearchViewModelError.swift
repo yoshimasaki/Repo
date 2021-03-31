@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SearchViewModelError: LocalizedError {
+enum SearchViewModelError: LocalizedError, Equatable {
     case cannotMakeUrl(urlString: String)
     case faildFetch(error: Error)
     case invalidHttpStatus(statusCode: Int)
@@ -27,6 +27,25 @@ enum SearchViewModelError: LocalizedError {
 
         case .jsonDecodeError(error: let error):
             return "Faild to decode JSON from data - error: \(error.localizedDescription)"
+        }
+    }
+
+    static func == (lhs: SearchViewModelError, rhs: SearchViewModelError) -> Bool {
+        switch (lhs, rhs) {
+        case let (.cannotMakeUrl(lhsSearchTerm), .cannotMakeUrl(rhsSearchTerm)):
+            return lhsSearchTerm == rhsSearchTerm
+
+        case (.faildFetch, .faildFetch):
+            return true
+
+        case let (.invalidHttpStatus(lhsStatucCode), .invalidHttpStatus(rhsStatusCode)):
+            return lhsStatucCode == rhsStatusCode
+
+        case (.jsonDecodeError, .jsonDecodeError):
+            return true
+
+        default:
+            return false
         }
     }
 }
