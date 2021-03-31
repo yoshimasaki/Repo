@@ -28,6 +28,7 @@
 		92730D91261493A200432854 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 92730D90261493A200432854 /* colors.json */; };
 		92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730D95261494B300432854 /* UIColor+Extensions.swift */; };
 		92730D9E261497DC00432854 /* UIColor+Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */; };
+		92730DA32614987E00432854 /* GitHubLanguageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730DA22614987E00432854 /* GitHubLanguageColor.swift */; };
 		927FC5482613E95800DC9812 /* URLFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5472613E95800DC9812 /* URLFetchable.swift */; };
 		927FC54D2613E96C00DC9812 /* URLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC54C2613E96C00DC9812 /* URLFetcher.swift */; };
 		927FC5532613E9A400DC9812 /* URLFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5522613E9A400DC9812 /* URLFetcherTests.swift */; };
@@ -98,6 +99,7 @@
 		92730D90261493A200432854 /* colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colors.json; sourceTree = "<group>"; };
 		92730D95261494B300432854 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Arithmetic.swift"; sourceTree = "<group>"; };
+		92730DA22614987E00432854 /* GitHubLanguageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubLanguageColor.swift; sourceTree = "<group>"; };
 		927FC5472613E95800DC9812 /* URLFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetchable.swift; sourceTree = "<group>"; };
 		927FC54C2613E96C00DC9812 /* URLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetcher.swift; sourceTree = "<group>"; };
 		927FC5522613E9A400DC9812 /* URLFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetcherTests.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				923721ED261455570082B90F /* RepositoryCollectionViewDataSource.swift */,
+				92730DA22614987E00432854 /* GitHubLanguageColor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				923FD4C3261362FE00935125 /* SearchViewModelState.swift in Sources */,
 				927FC5682613F0DF00DC9812 /* GitHubApiClient.swift in Sources */,
 				92FBE4FE26135C45005E9B9A /* SearchViewModelError.swift in Sources */,
+				92730DA32614987E00432854 /* GitHubLanguageColor.swift in Sources */,
 				924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */,
 				923721CB261443760082B90F /* SearchField.swift in Sources */,
 				9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */,
