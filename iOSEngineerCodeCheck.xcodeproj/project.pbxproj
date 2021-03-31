@@ -22,6 +22,8 @@
 		927FC56D2613F0F600DC9812 /* GitHubApiClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC56C2613F0F600DC9812 /* GitHubApiClientError.swift */; };
 		927FC5732613F1E500DC9812 /* GitHubApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5722613F1E500DC9812 /* GitHubApiClientTests.swift */; };
 		927FC57C2613F24400DC9812 /* MockURLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC57B2613F24400DC9812 /* MockURLFetcher.swift */; };
+		927FC58B2614029B00DC9812 /* SearchResponseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC58A2614029B00DC9812 /* SearchResponseStub.swift */; };
+		927FC5952614035C00DC9812 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5942614035C00DC9812 /* SearchViewModelTests.swift */; };
 		92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4C0C32612E09E007C90AF /* R.generated.swift */; };
 		92F4C0DB2612F8EB007C90AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F4C0DA2612F8EB007C90AF /* Localizable.strings */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
@@ -76,6 +78,8 @@
 		927FC56C2613F0F600DC9812 /* GitHubApiClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiClientError.swift; sourceTree = "<group>"; };
 		927FC5722613F1E500DC9812 /* GitHubApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApiClientTests.swift; sourceTree = "<group>"; };
 		927FC57B2613F24400DC9812 /* MockURLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLFetcher.swift; sourceTree = "<group>"; };
+		927FC58A2614029B00DC9812 /* SearchResponseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseStub.swift; sourceTree = "<group>"; };
+		927FC5942614035C00DC9812 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		92F4C0C32612E09E007C90AF /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		92F4C0DA2612F8EB007C90AF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -210,6 +214,30 @@
 			path = Mock;
 			sourceTree = "<group>";
 		};
+		927FC5892614027200DC9812 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				927FC58A2614029B00DC9812 /* SearchResponseStub.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
+		927FC5922614032B00DC9812 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				927FC5932614034200DC9812 /* SearchViewController */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		927FC5932614034200DC9812 /* SearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				927FC5942614035C00DC9812 /* SearchViewModelTests.swift */,
+			);
+			path = SearchViewController;
+			sourceTree = "<group>";
+		};
 		92F4C0D42612F7E1007C90AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,9 +340,11 @@
 			isa = PBXGroup;
 			children = (
 				BFD945F5244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift */,
+				927FC5892614027200DC9812 /* Stub */,
 				927FC57A2613F23800DC9812 /* Mock */,
 				927FC5512613E98F00DC9812 /* Foundation */,
 				927FC5712613F1D000DC9812 /* GitHubApiClient */,
+				927FC5922614032B00DC9812 /* ViewController */,
 				BFD945F7244DC5EB0012785A /* Info.plist */,
 			);
 			path = iOSEngineerCodeCheckTests;
@@ -636,8 +666,10 @@
 			files = (
 				BFD945F6244DC5EB0012785A /* iOSEngineerCodeCheckTests.swift in Sources */,
 				927FC57C2613F24400DC9812 /* MockURLFetcher.swift in Sources */,
+				927FC5952614035C00DC9812 /* SearchViewModelTests.swift in Sources */,
 				927FC5732613F1E500DC9812 /* GitHubApiClientTests.swift in Sources */,
 				927FC5532613E9A400DC9812 /* URLFetcherTests.swift in Sources */,
+				927FC58B2614029B00DC9812 /* SearchResponseStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
