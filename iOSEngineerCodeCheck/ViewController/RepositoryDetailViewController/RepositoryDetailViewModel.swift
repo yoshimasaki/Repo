@@ -36,9 +36,9 @@ final class RepositoryDetailViewModel {
         "\(repository?.openIssuesCount ?? 0) open issues"
     }
 
-    private let fetcher: URLFetcher
+    private let fetcher: URLFetchable
 
-    init(fetcher: URLFetcher = URLFetcher()) {
+    init(fetcher: URLFetchable = URLFetcher()) {
         self.fetcher = fetcher
     }
 
