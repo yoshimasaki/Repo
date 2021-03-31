@@ -13,6 +13,7 @@
 		923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721D7261443B70082B90F /* SearchFieldModelState.swift */; };
 		923721DD261443C70082B90F /* SearchFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721DC261443C70082B90F /* SearchFieldModel.swift */; };
 		923721E4261445880082B90F /* SearchFieldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721E3261445880082B90F /* SearchFieldModelTests.swift */; };
+		923721EE261455570082B90F /* RepositoryCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721ED261455570082B90F /* RepositoryCollectionViewDataSource.swift */; };
 		923FD4C3261362FE00935125 /* SearchViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923FD4C2261362FE00935125 /* SearchViewModelState.swift */; };
 		924480772613D9F100A8DEF2 /* SearchResultEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480762613D9F100A8DEF2 /* SearchResultEntity.swift */; };
 		9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */; };
@@ -74,6 +75,7 @@
 		923721D7261443B70082B90F /* SearchFieldModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldModelState.swift; sourceTree = "<group>"; };
 		923721DC261443C70082B90F /* SearchFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldModel.swift; sourceTree = "<group>"; };
 		923721E3261445880082B90F /* SearchFieldModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldModelTests.swift; sourceTree = "<group>"; };
+		923721ED261455570082B90F /* RepositoryCollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		923FD4C2261362FE00935125 /* SearchViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelState.swift; sourceTree = "<group>"; };
 		924480762613D9F100A8DEF2 /* SearchResultEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEntity.swift; sourceTree = "<group>"; };
 		9244807B2613DA0E00A8DEF2 /* RepositoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryEntity.swift; sourceTree = "<group>"; };
@@ -206,6 +208,14 @@
 				923721E3261445880082B90F /* SearchFieldModelTests.swift */,
 			);
 			path = SearchField;
+			sourceTree = "<group>";
+		};
+		923721EB2614550D0082B90F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				923721ED261455570082B90F /* RepositoryCollectionViewDataSource.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		924480722613D6D700A8DEF2 /* Entity */ = {
@@ -384,6 +394,7 @@
 				9244808A2613DAA500A8DEF2 /* Extensions */,
 				92F4C0E2261307AB007C90AF /* Foundation */,
 				924480722613D6D700A8DEF2 /* Entity */,
+				923721EB2614550D0082B90F /* Components */,
 				92F4C0D82612F812007C90AF /* Delegate */,
 				927FC5662613F0C600DC9812 /* GitHubApiClient */,
 				923721C8261443570082B90F /* View */,
@@ -708,6 +719,7 @@
 				923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */,
 				924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */,
 				923721DD261443C70082B90F /* SearchFieldModel.swift in Sources */,
+				923721EE261455570082B90F /* RepositoryCollectionViewDataSource.swift in Sources */,
 				9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */,
 				927FC5482613E95800DC9812 /* URLFetchable.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
