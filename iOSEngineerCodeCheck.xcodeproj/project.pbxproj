@@ -26,6 +26,7 @@
 		9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */; };
 		9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */; };
 		92730D91261493A200432854 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 92730D90261493A200432854 /* colors.json */; };
+		92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730D95261494B300432854 /* UIColor+Extensions.swift */; };
 		927FC5482613E95800DC9812 /* URLFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5472613E95800DC9812 /* URLFetchable.swift */; };
 		927FC54D2613E96C00DC9812 /* URLFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC54C2613E96C00DC9812 /* URLFetcher.swift */; };
 		927FC5532613E9A400DC9812 /* URLFetcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5522613E9A400DC9812 /* URLFetcherTests.swift */; };
@@ -94,6 +95,7 @@
 		924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		92515F1C2612DA48005A6905 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		92730D90261493A200432854 /* colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colors.json; sourceTree = "<group>"; };
+		92730D95261494B300432854 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		927FC5472613E95800DC9812 /* URLFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetchable.swift; sourceTree = "<group>"; };
 		927FC54C2613E96C00DC9812 /* URLFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetcher.swift; sourceTree = "<group>"; };
 		927FC5522613E9A400DC9812 /* URLFetcherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFetcherTests.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			children = (
 				9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */,
 				924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */,
+				92730D95261494B300432854 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				927FC56D2613F0F600DC9812 /* GitHubApiClientError.swift in Sources */,
 				92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */,
 				92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */,
+				92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */,
 				9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */,
 				923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */,
 				924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */,
