@@ -9,13 +9,7 @@
 import UIKit
 import Combine
 
-final class SearchViewController: UITableViewController {
-
-    private enum Constants {
-        enum Segue {
-            static let showRepositoryDetailViewController = "showRepositoryDetailViewController"
-        }
-    }
+final class SearchViewController: UIViewController {
 
     private let searchField = SearchField(frame: .zero)
 
@@ -33,28 +27,6 @@ final class SearchViewController: UITableViewController {
         subscribeSearchFieldState()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == Constants.Segue.showRepositoryDetailViewController else {
-            return
-        }
-
-        detailViewController.repository = viewModel.lastSelectedRepository
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.repositories.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        configureCell(for: tableView, at: indexPath)
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // tableView の行をタップした時に呼ばれる
-        viewModel.lastSelectedRowIndex = indexPath.row
-        performSegue(withIdentifier: Constants.Segue.showRepositoryDetailViewController, sender: self)
-    }
-
     // MARK: - Configure Views
     private func configureViews() {
         searchField.placeholder = R.string.localizable.searchGitHubRepository()
@@ -70,18 +42,6 @@ final class SearchViewController: UITableViewController {
             searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
             searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
         ])
-    }
-
-    private func configureCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoryCell, for: indexPath) else {
-            fatalError("\(R.reuseIdentifier.repositoryCell) setup is incorrect")
-        }
-
-        let repository = viewModel.repositories[indexPath.row]
-        cell.textLabel?.text = repository.fullName
-        cell.detailTextLabel?.text = repository.language
-
-        return cell
     }
 
     // MARK: - Subscriptions
@@ -127,7 +87,7 @@ final class SearchViewController: UITableViewController {
             break
 
         case .repositoriesUpdated:
-            tableView.reloadData()
+            break
         }
     }
 
