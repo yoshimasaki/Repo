@@ -12,6 +12,7 @@ import Combine
 final class SearchViewController: UIViewController {
 
     private let searchField = SearchField(frame: .zero)
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -30,18 +31,39 @@ final class SearchViewController: UIViewController {
     // MARK: - Configure Views
     private func configureViews() {
         searchField.placeholder = R.string.localizable.searchGitHubRepository()
+
+        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
     }
 
     private func configureConstraints() {
         searchField.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(searchField)
+        view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
+            searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+
+            collectionView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private var collectionViewLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(110))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(110))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        return layout
     }
 
     // MARK: - Subscriptions
