@@ -36,6 +36,12 @@ final class RepositoryDetailViewModel {
         "\(repository?.openIssuesCount ?? 0) open issues"
     }
 
+    private let fetcher: URLFetcher
+
+    init(fetcher: URLFetcher = URLFetcher()) {
+        self.fetcher = fetcher
+    }
+
     func fetchAvatarImage(completion: ((Result<UIImage?, RepositoryDetailViewModelError>) -> Void)?) {
         if
             let owner = repository?.owner,
@@ -46,7 +52,7 @@ final class RepositoryDetailViewModel {
                 return
             }
 
-            let dataTask = URLSession.shared.dataTask(with: avatarImageUrl) { (data, response, error) in
+            fetcher.fetch(url: avatarImageUrl) { (data, response, error) in
 
                 if let error = error {
                     completion?(.failure(.faildFetch(error: error)))
@@ -68,7 +74,6 @@ final class RepositoryDetailViewModel {
                     completion?(.success(image))
                 }
             }
-            dataTask.resume()
         }
     }
 }
