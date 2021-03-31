@@ -9,79 +9,85 @@
 import UIKit
 import Combine
 
-final class SearchViewController: UITableViewController {
-
-    private enum Constants {
-        enum Segue {
-            static let showRepositoryDetailViewController = "showRepositoryDetailViewController"
-        }
-    }
+final class SearchViewController: UIViewController {
 
     private let searchField = SearchField(frame: .zero)
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    private let collectionViewDataSource = RepositoryCollectionViewDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
         configureConstraints()
+        registCollectionViewCell()
+        configreCollectionViewDataSource()
         subscribeState()
         subscribeError()
         subscribeSearchFieldText()
         subscribeSearchFieldState()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailViewController = segue.destination as? RepositoryDetailViewController, segue.identifier == Constants.Segue.showRepositoryDetailViewController else {
-            return
-        }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-        detailViewController.repository = viewModel.lastSelectedRepository
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.repositories.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        configureCell(for: tableView, at: indexPath)
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // tableView の行をタップした時に呼ばれる
-        viewModel.lastSelectedRowIndex = indexPath.row
-        performSegue(withIdentifier: Constants.Segue.showRepositoryDetailViewController, sender: self)
+        updateCollectionViewContentInset()
     }
 
     // MARK: - Configure Views
     private func configureViews() {
         searchField.placeholder = R.string.localizable.searchGitHubRepository()
+
+        collectionView.backgroundColor = .systemBackground
+        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
     }
 
     private func configureConstraints() {
         searchField.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
+        view.addSubview(collectionView)
         view.addSubview(searchField)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             searchField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24)
+            searchField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
-    private func configureCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.repositoryCell, for: indexPath) else {
-            fatalError("\(R.reuseIdentifier.repositoryCell) setup is incorrect")
-        }
+    private func configreCollectionViewDataSource() {
+        collectionViewDataSource.configreCollectionViewDataSource(collectionView: collectionView)
+    }
 
-        let repository = viewModel.repositories[indexPath.row]
-        cell.textLabel?.text = repository.fullName
-        cell.detailTextLabel?.text = repository.language
+    private func registCollectionViewCell() {
+        collectionView.register(RepositoryCell.self, forCellWithReuseIdentifier: RepositoryCell.reuseIdentifier)
+    }
 
-        return cell
+    private var collectionViewLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 24, bottom: 16, trailing: 24)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        return layout
+    }
+
+    private func updateCollectionViewContentInset() {
+        collectionView.contentInset.top = searchField.frame.maxY + 8
     }
 
     // MARK: - Subscriptions
@@ -127,7 +133,7 @@ final class SearchViewController: UITableViewController {
             break
 
         case .repositoriesUpdated:
-            tableView.reloadData()
+            collectionViewDataSource.updateDataSource(with: viewModel.repositories)
         }
     }
 

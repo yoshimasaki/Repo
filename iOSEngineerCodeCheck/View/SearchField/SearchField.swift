@@ -120,7 +120,6 @@ final class SearchField: UIView {
     }
 
     private func handleState(_ state: SearchFieldModelState) {
-        print(#function, state)
         switch state {
         case .none:
             break
