@@ -12,6 +12,8 @@ final class SearchViewModel {
     @Published var state: SearchViewModelState = .none
     @Published var error: SearchViewModelError?
 
+    private let apiClient: GitHubApiClient
+
     private(set) var repositories: [RepositoryEntity] = []
 
     private var searchSessionDataTask: URLSessionTask?
@@ -21,59 +23,45 @@ final class SearchViewModel {
         repositories[lastSelectedRowIndex]
     }
 
+    init(apiClient: GitHubApiClient = GitHubApiClient()) {
+        self.apiClient = apiClient
+    }
+
     // MARK: - Search Reposotory
     func searchRepository(by searchTerm: String) {
-        guard !searchTerm.isEmpty else {
-            return
-        }
-
-        do {
-            let searchApiUrl = try GitHubApi.searchUrl(with: searchTerm)
-
-            searchSessionDataTask = URLSession.shared.dataTask(with: searchApiUrl) { [weak self] (data, response, error) in
-
-                guard let weakSelf = self else {
-                    return
-                }
-
-                if let error = error {
-                    weakSelf.error = .faildFetch(error: error)
-                    return
-                }
-
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    print("Failed to get HTTPURLResponse - response: \(response!)")
-                    return
-                }
-
-                guard httpResponse.isStatusOk else {
-                    weakSelf.error = .invalidHttpStatus(statusCode: httpResponse.statusCode)
-                    return
-                }
-
-                do {
-                    let repositories = try weakSelf.repositories(from: data!)
-
-                    weakSelf.repositories = repositories
-                    weakSelf.state = .repositoriesUpdated
-                } catch {
-                    weakSelf.error = .jsonDecodeError(error: error)
-                }
+        apiClient.searchRepository(by: searchTerm) { [weak self] (result) in
+            guard let weakSelf = self else {
+                return
             }
 
-            searchSessionDataTask!.resume()
-        } catch {
-            self.error = .cannotMakeUrl(urlString: searchTerm)
+            switch result {
+            case .failure(let error):
+                weakSelf.error = weakSelf.searchViewModelError(with: error)
+
+            case .success(let repositories):
+                weakSelf.repositories = repositories
+                weakSelf.state = .repositoriesUpdated
+            }
         }
     }
 
     func cancelSearch() {
-        searchSessionDataTask?.cancel()
+        apiClient.cancel()
     }
 
-    private func repositories(from data: Data) throws -> [RepositoryEntity] {
-        let result = try JSONDecoder.decoder.decode(SearchResultEntity.self, from: data)
+    private func searchViewModelError(with error: GitHubApiClientError) -> SearchViewModelError {
+        switch error {
+        case .cannotMakeUrl(searchTerm: let searchTerm):
+            return .cannotMakeUrl(urlString: searchTerm)
 
-        return result.items
+        case .faildFetch(error: let error):
+            return .faildFetch(error: error)
+
+        case .invalidHttpStatus(statusCode: let statusCode):
+            return .invalidHttpStatus(statusCode: statusCode)
+
+        case .jsonDecodeError(error: let error):
+            return .jsonDecodeError(error: error)
+        }
     }
 }
