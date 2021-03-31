@@ -164,7 +164,7 @@ final class RepositoryInfoView: UIView {
 
         if let language = repository.language {
             let languageColor = GitHubLanguageColor.shared.color(for: language)
-            let lightColor = languageColor.add(hue: 0, saturation: 0, brightness: 0.3, alpha: 0)
+            let lightColor = languageColor.add(hue: 0, saturation: -0.1, brightness: 0.2, alpha: 0)
             let labelColor = languageColor.add(hue: 0, saturation: -0.3, brightness: -0.6, alpha: 0)
             let secondaryLabelColor = languageColor.add(hue: 0, saturation: -0.3, brightness: -0.4, alpha: 0)
             let statusColor = UIColor.systemBackground.add(hue: 0, saturation: 0, brightness: 0, alpha: -0.2)
