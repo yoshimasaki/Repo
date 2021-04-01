@@ -13,7 +13,8 @@ final class MarkdownCardView: UIView {
 
     let iconView = UIImageView(frame: .zero)
     let titleLabel = UILabel(frame: .zero)
-    let markdownView = MarkdownView()
+
+    private var markdownView: MarkdownView?
 
     // この MarkdownCardView を角丸にしたいが clipToBounds = true にすると shadow までもクリップされてしまうので content だけを角丸にクリップする contentView が必要。
     private let contentView = UIView(frame: .zero)
@@ -27,6 +28,27 @@ final class MarkdownCardView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func loadMarkdown(_ markdown: String) {
+        markdownView?.removeFromSuperview()
+        markdownView = nil
+
+        let markdownView = MarkdownView()
+        markdownView.load(markdown: markdown)
+
+        self.markdownView = markdownView
+
+        markdownView.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(markdownView)
+
+        NSLayoutConstraint.activate([
+            markdownView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            markdownView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            markdownView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            markdownView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
 
     private func configureViews() {
@@ -51,13 +73,11 @@ final class MarkdownCardView: UIView {
     private func configureConstraints() {
         iconView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        markdownView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(contentView)
         contentView.addSubview(iconView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(markdownView)
 
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: topAnchor),
@@ -72,12 +92,7 @@ final class MarkdownCardView: UIView {
 
             titleLabel.centerYAnchor.constraint(equalTo: iconView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 8),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-
-            markdownView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            markdownView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            markdownView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            markdownView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
         ])
     }
 }

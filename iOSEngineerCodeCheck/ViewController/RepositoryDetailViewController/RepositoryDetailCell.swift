@@ -103,6 +103,6 @@ final class RepositoryDetailCell: UICollectionViewCell {
 
     private func updateReadme(_ readmeInfo: ReadmeInfo?) {
         markdownCardView.titleLabel.text = readmeInfo?.fileName
-        markdownCardView.markdownView.load(markdown: readmeInfo?.contents)
+        markdownCardView.loadMarkdown(readmeInfo?.contents ?? "")
     }
 }
