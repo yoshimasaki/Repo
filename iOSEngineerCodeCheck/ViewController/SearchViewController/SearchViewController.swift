@@ -46,6 +46,8 @@ final class SearchViewController: UIViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.keyboardDismissMode = .interactive
         collectionView.delegate = self
+
+        navigationController?.delegate = self
     }
 
     private func configureConstraints() {
@@ -182,6 +184,10 @@ final class SearchViewController: UIViewController {
         detailViewController.lastSelectedItemIndexPath = viewModel.lastSelectedItemIndexPath
         navigationController?.pushViewController(detailViewController, animated: true)
     }
+
+    private func lastSelectedRepositoryCell() -> RepositoryCell? {
+        collectionView.cellForItem(at: viewModel.lastSelectedItemIndexPath) as? RepositoryCell
+    }
 }
 
 extension SearchViewController: UICollectionViewDelegate {
@@ -189,5 +195,25 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.lastSelectedItemIndexPath = indexPath
         transitionToDetailView()
+    }
+}
+
+extension SearchViewController: UINavigationControllerDelegate {
+
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let isPresenting = toVC is RepositoryDetailViewController
+
+        return RepositoryInfoViewAnimator(presenting: isPresenting)
+    }
+}
+
+extension SearchViewController: TransitionSourceViewProvidable {
+
+    var sourceViewFrameOffset: CGPoint {
+        .zero
+    }
+
+    func sourceView(for animator: RepositoryInfoViewAnimator) -> UIView? {
+        lastSelectedRepositoryCell()
     }
 }

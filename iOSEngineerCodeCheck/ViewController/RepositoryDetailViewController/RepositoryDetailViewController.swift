@@ -91,11 +91,38 @@ final class RepositoryDetailViewController: UIViewController {
     private func scrollToLastSelectedItem() {
         collectionView.scrollToItem(at: viewModel.lastSelectedItemIndexPath, at: .centeredHorizontally, animated: false)
     }
+
+    private func currentVisibleRepositoryInfoView(presenting: Bool) -> RepositoryInfoView? {
+        // viewController の遷移時に lastSelectedItemIndexPath の cell にスクロールしてない場合があるのでその場合は0個目の cell の infoView を返す。
+        let cell: UICollectionViewCell?
+        if presenting {
+            cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0))
+        } else {
+            cell = collectionView.cellForItem(at: viewModel.lastSelectedItemIndexPath)
+        }
+
+        guard let detailCell = cell as? RepositoryDetailCell else {
+            return nil
+        }
+
+        return detailCell.repositoryInfoView
+    }
 }
 
 extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
 
     func repositoryDetailCellDidTapCloseButton(_ cell: RepositoryDetailCell) {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension RepositoryDetailViewController: TransitionSourceViewProvidable {
+
+    var sourceViewFrameOffset: CGPoint {
+        CGPoint(x: .zero, y: view.safeAreaInsets.top)
+    }
+
+    func sourceView(for animator: RepositoryInfoViewAnimator) -> UIView? {
+        currentVisibleRepositoryInfoView(presenting: animator.isPresenting)
     }
 }
