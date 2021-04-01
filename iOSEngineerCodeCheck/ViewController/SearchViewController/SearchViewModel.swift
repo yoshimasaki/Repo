@@ -17,10 +17,10 @@ final class SearchViewModel {
     private(set) var repositories: [RepositoryEntity] = []
 
     private var searchSessionDataTask: URLSessionTask?
-    var lastSelectedRowIndex = 0
+    var lastSelectedItemIndexPath: IndexPath = .init()
 
     var lastSelectedRepository: RepositoryEntity {
-        repositories[lastSelectedRowIndex]
+        repositories[lastSelectedItemIndexPath.item]
     }
 
     init(apiClient: GitHubApiClient = GitHubApiClient()) {

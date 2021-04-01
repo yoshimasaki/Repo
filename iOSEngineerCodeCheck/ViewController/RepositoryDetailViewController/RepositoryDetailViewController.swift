@@ -19,12 +19,12 @@ final class RepositoryDetailViewController: UIViewController {
         }
     }
 
-    var lastSelectedItemIndex: Int {
+    var lastSelectedItemIndexPath: IndexPath {
         get {
-            viewModel.lastSelectedItemIndex
+            viewModel.lastSelectedItemIndexPath
         }
         set {
-            viewModel.lastSelectedItemIndex = newValue
+            viewModel.lastSelectedItemIndexPath = newValue
         }
     }
 

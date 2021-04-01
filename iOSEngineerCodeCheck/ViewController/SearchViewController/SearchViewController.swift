@@ -179,7 +179,7 @@ final class SearchViewController: UIViewController {
         }
 
         detailViewController.repositories = viewModel.repositories
-        detailViewController.lastSelectedItemIndex = viewModel.lastSelectedRowIndex
+        detailViewController.lastSelectedItemIndexPath = viewModel.lastSelectedItemIndexPath
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
@@ -187,7 +187,7 @@ final class SearchViewController: UIViewController {
 extension SearchViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel.lastSelectedRowIndex = indexPath.item
+        viewModel.lastSelectedItemIndexPath = indexPath
         transitionToDetailView()
     }
 }
