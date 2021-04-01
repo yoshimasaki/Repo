@@ -54,8 +54,11 @@ final class SearchViewModel {
 
     private func searchViewModelError(with error: GitHubApiClientError) -> SearchViewModelError {
         switch error {
-        case .cannotMakeUrl(searchTerm: let searchTerm):
+        case .cannotMakeSearchUrl(searchTerm: let searchTerm):
             return .cannotMakeUrl(urlString: searchTerm)
+
+        case .cannotMakeReadmeUrl:
+            fatalError("We didn't fetch readme in here, so never reach")
 
         case .faildFetch(error: let error):
             return .faildFetch(error: error)
