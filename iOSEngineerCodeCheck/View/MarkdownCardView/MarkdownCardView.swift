@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import MarkdownView
 
 final class MarkdownCardView: UIView {
 
     let iconView = UIImageView(frame: .zero)
     let titleLabel = UILabel(frame: .zero)
-    let markdownView = UIView(frame: .zero)
+    let markdownView = MarkdownView()
 
     // この MarkdownCardView を角丸にしたいが clipToBounds = true にすると shadow までもクリップされてしまうので content だけを角丸にクリップする contentView が必要。
     private let contentView = UIView(frame: .zero)
@@ -45,6 +46,8 @@ final class MarkdownCardView: UIView {
 
         titleLabel.font = UIFont.systemFont(ofSize: 18)
         titleLabel.textColor = .systemGray
+
+        markdownView.load(markdown: "# Hello World!")
     }
 
     private func configureConstraints() {
