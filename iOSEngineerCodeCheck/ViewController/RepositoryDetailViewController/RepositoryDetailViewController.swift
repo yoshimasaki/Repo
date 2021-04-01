@@ -45,6 +45,10 @@ final class RepositoryDetailViewController: UIViewController {
         }
     }
 
+    func updateVisibleCellCloseButtonVisibility(_ isVisible: Bool, animating: Bool = true) {
+        (collectionView.visibleCells as? [RepositoryDetailCell])?.forEach { $0.updateCloseButtonVisibility(isVisible, animating: animating) }
+    }
+
     private func configureViews() {
         collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .never

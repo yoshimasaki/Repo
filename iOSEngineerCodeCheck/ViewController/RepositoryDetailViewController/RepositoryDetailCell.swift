@@ -38,6 +38,16 @@ final class RepositoryDetailCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func updateCloseButtonVisibility(_ isVisible: Bool, animating: Bool = true) {
+        if animating {
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = isVisible ? 1 : 0
+            }
+        } else {
+            closeButton.alpha = isVisible ? 1 : 0
+        }
+    }
+
     private func configureViews() {
         let docIcon = UIImage(systemName: "doc.text")
         assert(docIcon != nil, "doc.text does not exist in SF Symbols")
