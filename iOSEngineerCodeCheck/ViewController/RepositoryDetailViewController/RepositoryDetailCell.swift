@@ -69,7 +69,7 @@ final class RepositoryDetailCell: UICollectionViewCell {
             repositoryInfoView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 24),
             repositoryInfoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             repositoryInfoView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            repositoryInfoView.heightAnchor.constraint(equalToConstant: 180),
+            repositoryInfoView.heightAnchor.constraint(equalToConstant: 156),
 
             closeButton.topAnchor.constraint(equalTo: repositoryInfoView.topAnchor, constant: -10),
             closeButton.trailingAnchor.constraint(equalTo: repositoryInfoView.trailingAnchor, constant: 10),
