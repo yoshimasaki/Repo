@@ -94,7 +94,7 @@ final class SearchViewController: UIViewController {
     }
 
     private func updateCollectionViewContentInset() {
-        collectionView.contentInset.top = searchField.frame.maxY + 8
+        collectionView.contentInset.top = searchField.bounds.height + 32
     }
 
     // MARK: - Subscriptions
