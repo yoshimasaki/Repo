@@ -38,6 +38,12 @@ final class RepositoryDetailCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        updateCloseButtonVisibility(true, animating: false)
+    }
+
     func updateCloseButtonVisibility(_ isVisible: Bool, animating: Bool = true) {
         if animating {
             UIView.animate(withDuration: 0.3) {
