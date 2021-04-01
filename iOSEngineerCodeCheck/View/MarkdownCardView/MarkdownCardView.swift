@@ -46,8 +46,6 @@ final class MarkdownCardView: UIView {
 
         titleLabel.font = UIFont.systemFont(ofSize: 18)
         titleLabel.textColor = .systemGray
-
-        markdownView.load(markdown: "# Hello World!")
     }
 
     private func configureConstraints() {

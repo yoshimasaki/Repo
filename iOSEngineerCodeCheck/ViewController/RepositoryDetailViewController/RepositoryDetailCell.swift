@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class RepositoryDetailCell: UICollectionViewCell {
 
@@ -17,6 +18,14 @@ final class RepositoryDetailCell: UICollectionViewCell {
     let repositoryInfoView = RepositoryInfoView(frame: .zero)
     let markdownCardView = MarkdownCardView(frame: .zero)
     private let closeButton = UIButton(type: .system)
+
+    var readmePublisher: AnyPublisher<ReadmeInfo?, Never>? {
+        didSet {
+            subscribeReadme()
+        }
+    }
+
+    private var readmeSubscription: AnyCancellable?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,5 +85,24 @@ final class RepositoryDetailCell: UICollectionViewCell {
 
     @objc private func handleCloseButtonTap(_ button: UIButton) {
         delegate?.repositoryDetailCellDidTapCloseButton(self)
+    }
+
+    private func subscribeReadme() {
+        readmeSubscription?.cancel()
+
+        guard let publisher = readmePublisher else {
+            return
+        }
+
+        readmeSubscription = publisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] (readmeInfo) in
+                self?.updateReadme(readmeInfo)
+            })
+    }
+
+    private func updateReadme(_ readmeInfo: ReadmeInfo?) {
+        markdownCardView.titleLabel.text = readmeInfo?.fileName
+        markdownCardView.markdownView.load(markdown: readmeInfo?.contents)
     }
 }
