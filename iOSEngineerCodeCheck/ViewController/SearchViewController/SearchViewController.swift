@@ -178,7 +178,8 @@ final class SearchViewController: UIViewController {
             return
         }
 
-        detailViewController.repository = viewModel.lastSelectedRepository
+        detailViewController.repositories = viewModel.repositories
+        detailViewController.lastSelectedItemIndex = viewModel.lastSelectedRowIndex
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

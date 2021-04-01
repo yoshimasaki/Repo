@@ -10,50 +10,92 @@ import UIKit
 
 final class RepositoryDetailViewController: UIViewController {
 
-    var repository: RepositoryEntity? {
+    var repositories: [RepositoryEntity] {
         get {
-            viewModel.repository
+            viewModel.repositories
         }
         set {
-            viewModel.repository = newValue
+            viewModel.repositories = newValue
         }
     }
 
-    @IBOutlet private weak var avatarImageView: UIImageView!
-    @IBOutlet private weak var repositoryNameLabel: UILabel!
-    @IBOutlet private weak var languageLabel: UILabel!
-    @IBOutlet private weak var starCountLabel: UILabel!
-    @IBOutlet private weak var watchCountLabel: UILabel!
-    @IBOutlet private weak var forkCountLabel: UILabel!
-    @IBOutlet private weak var openIssueCountLabel: UILabel!
+    var lastSelectedItemIndex: Int {
+        get {
+            viewModel.lastSelectedItemIndex
+        }
+        set {
+            viewModel.lastSelectedItemIndex = newValue
+        }
+    }
+
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
 
     private let viewModel = RepositoryDetailViewModel()
+    private let collectionViewDataSource = RepositoryDetailCollectionDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
-        fetchAvatarImage()
+        configureConstraints()
+        registCollectionViewCell()
+        configreCollectionViewDataSource()
+        collectionViewDataSource.updateDataSource(with: repositories) { [weak self] in
+            self?.scrollToLastSelectedItem()
+        }
     }
 
     private func configureViews() {
-        repositoryNameLabel.text = viewModel.repositoryName
-        languageLabel.text = viewModel.languageText
-        starCountLabel.text = viewModel.starCountText
-        watchCountLabel.text = viewModel.watchCountText
-        forkCountLabel.text = viewModel.forkCountText
-        openIssueCountLabel.text = viewModel.openIssueCountText
+        collectionView.backgroundColor = .systemBackground
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.alwaysBounceVertical = false
     }
 
-    private func fetchAvatarImage() {
-        viewModel.fetchAvatarImage { [weak self] (result) in
-            switch result {
-            case .failure(let error as LocalizedError):
-                print(error.errorDescription ?? "")
+    private func configureConstraints() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-            case .success(let image):
-                self?.avatarImageView.image = image
-            }
-        }
+        view.addSubview(collectionView)
+
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+
+    private func configreCollectionViewDataSource() {
+        collectionViewDataSource.repositoryDetailCellDelegate = self
+        collectionViewDataSource.configreCollectionViewDataSource(collectionView: collectionView)
+    }
+
+    private func registCollectionViewCell() {
+        collectionView.register(RepositoryDetailCell.self, forCellWithReuseIdentifier: RepositoryDetailCell.reuseIdentifier)
+    }
+
+    private var collectionViewLayout: UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        return layout
+    }
+
+    private func scrollToLastSelectedItem() {
+        collectionView.scrollToItem(at: viewModel.lastSelectedItemIndexPath, at: .centeredHorizontally, animated: false)
+    }
+}
+
+extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
+
+    func repositoryDetailCellDidTapCloseButton(_ cell: RepositoryDetailCell) {
+        navigationController?.popViewController(animated: true)
     }
 }

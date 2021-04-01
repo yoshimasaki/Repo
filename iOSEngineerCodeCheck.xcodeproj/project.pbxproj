@@ -39,6 +39,10 @@
 		927FC58B2614029B00DC9812 /* SearchResponseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC58A2614029B00DC9812 /* SearchResponseStub.swift */; };
 		927FC5952614035C00DC9812 /* SearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5942614035C00DC9812 /* SearchViewModelTests.swift */; };
 		927FC5A42614091000DC9812 /* RepositoryDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927FC5A32614091000DC9812 /* RepositoryDetailViewModelTests.swift */; };
+		928DAFB026154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DAFAF26154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift */; };
+		928DAFB526154D6000FBE3E4 /* RepositoryDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DAFB426154D6000FBE3E4 /* RepositoryDetailCell.swift */; };
+		928DAFBB26154D9E00FBE3E4 /* MarkdownCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DAFBA26154D9E00FBE3E4 /* MarkdownCardView.swift */; };
+		928DAFC326154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DAFC226154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift */; };
 		92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4C0C32612E09E007C90AF /* R.generated.swift */; };
 		92F4C0DB2612F8EB007C90AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F4C0DA2612F8EB007C90AF /* Localizable.strings */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
@@ -110,6 +114,10 @@
 		927FC58A2614029B00DC9812 /* SearchResponseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseStub.swift; sourceTree = "<group>"; };
 		927FC5942614035C00DC9812 /* SearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTests.swift; sourceTree = "<group>"; };
 		927FC5A32614091000DC9812 /* RepositoryDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelTests.swift; sourceTree = "<group>"; };
+		928DAFAF26154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailCollectionDataSource.swift; sourceTree = "<group>"; };
+		928DAFB426154D6000FBE3E4 /* RepositoryDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailCell.swift; sourceTree = "<group>"; };
+		928DAFBA26154D9E00FBE3E4 /* MarkdownCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownCardView.swift; sourceTree = "<group>"; };
+		928DAFC226154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailCellDelegate.swift; sourceTree = "<group>"; };
 		92F4C0C32612E09E007C90AF /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		92F4C0DA2612F8EB007C90AF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 		923721C8261443570082B90F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				928DAFB926154D9700FBE3E4 /* MarkdownCardView */,
 				9237220526146E840082B90F /* RepositoryCell */,
 				923721F5261455A70082B90F /* RepositoryInfoView */,
 				923721C92614436D0082B90F /* SearchField */,
@@ -342,6 +351,14 @@
 			path = RepositoryDetailViewController;
 			sourceTree = "<group>";
 		};
+		928DAFB926154D9700FBE3E4 /* MarkdownCardView */ = {
+			isa = PBXGroup;
+			children = (
+				928DAFBA26154D9E00FBE3E4 /* MarkdownCardView.swift */,
+			);
+			path = MarkdownCardView;
+			sourceTree = "<group>";
+		};
 		92F4C0D42612F7E1007C90AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,7 +405,10 @@
 			children = (
 				BF0A658C244F2A3B00280FA6 /* RepositoryDetailViewController.swift */,
 				92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */,
+				928DAFAF26154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift */,
 				92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */,
+				928DAFB426154D6000FBE3E4 /* RepositoryDetailCell.swift */,
+				928DAFC226154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift */,
 			);
 			path = RepositoryDetailViewController;
 			sourceTree = "<group>";
@@ -764,7 +784,9 @@
 				923721DD261443C70082B90F /* SearchFieldModel.swift in Sources */,
 				923721EE261455570082B90F /* RepositoryCollectionViewDataSource.swift in Sources */,
 				9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */,
+				928DAFB026154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift in Sources */,
 				927FC5482613E95800DC9812 /* URLFetchable.swift in Sources */,
+				928DAFBB26154D9E00FBE3E4 /* MarkdownCardView.swift in Sources */,
 				9237220126146E280082B90F /* ImagePublisher.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
 				923721FC26146D570082B90F /* StatusValueView.swift in Sources */,
@@ -772,9 +794,11 @@
 				923721F7261455AF0082B90F /* RepositoryInfoView.swift in Sources */,
 				923FD4C3261362FE00935125 /* SearchViewModelState.swift in Sources */,
 				927FC5682613F0DF00DC9812 /* GitHubApiClient.swift in Sources */,
+				928DAFB526154D6000FBE3E4 /* RepositoryDetailCell.swift in Sources */,
 				92FBE4FE26135C45005E9B9A /* SearchViewModelError.swift in Sources */,
 				92730DA32614987E00432854 /* GitHubLanguageColor.swift in Sources */,
 				924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */,
+				928DAFC326154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift in Sources */,
 				923721CB261443760082B90F /* SearchField.swift in Sources */,
 				9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				9237220726146EA90082B90F /* RepositoryCell.swift in Sources */,
