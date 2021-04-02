@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 
+// 現状 SearchViewController と BookmarksViewController は同じ構成のコードだが、将来的な機能拡張がどの方向にいくかはわからないので細かく構成を変えやすいように base view controller を作っていない。
 final class SearchViewController: UIViewController {
 
     private let searchField = SearchField(frame: .zero)

@@ -64,6 +64,8 @@
 		92F934FF2616D76F00AC6D1E /* Repo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92F934FD2616D76F00AC6D1E /* Repo.xcdatamodeld */; };
 		92F9350B2616DB2B00AC6D1E /* RepositoryBookmark+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935072616DB2B00AC6D1E /* RepositoryBookmark+CoreDataClass.swift */; };
 		92F9350D2616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935092616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift */; };
+		92F935192616F65B00AC6D1E /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935182616F65B00AC6D1E /* BookmarksViewModel.swift */; };
+		92F9351E2616F67B00AC6D1E /* BookmarksViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9351D2616F67B00AC6D1E /* BookmarksViewModelState.swift */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
 		92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */; };
 		92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */; };
@@ -159,6 +161,8 @@
 		92F934FE2616D76F00AC6D1E /* Repo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Repo.xcdatamodel; sourceTree = "<group>"; };
 		92F935072616DB2B00AC6D1E /* RepositoryBookmark+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryBookmark+CoreDataClass.swift"; sourceTree = "<group>"; };
 		92F935092616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryOwner+CoreDataClass.swift"; sourceTree = "<group>"; };
+		92F935182616F65B00AC6D1E /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
+		92F9351D2616F67B00AC6D1E /* BookmarksViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModelState.swift; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
 		92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelError.swift; sourceTree = "<group>"; };
 		92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -474,6 +478,8 @@
 			isa = PBXGroup;
 			children = (
 				92F934E92616D08F00AC6D1E /* BookmarksViewController.swift */,
+				92F935182616F65B00AC6D1E /* BookmarksViewModel.swift */,
+				92F9351D2616F67B00AC6D1E /* BookmarksViewModelState.swift */,
 			);
 			path = BookmarksViewController;
 			sourceTree = "<group>";
@@ -874,6 +880,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F935192616F65B00AC6D1E /* BookmarksViewModel.swift in Sources */,
 				92F934EA2616D08F00AC6D1E /* BookmarksViewController.swift in Sources */,
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
 				92AFF4EB26167F3C00F0E6AB /* CenterPagingFlowLayout.swift in Sources */,
@@ -910,6 +917,7 @@
 				928DAFBB26154D9E00FBE3E4 /* MarkdownCardView.swift in Sources */,
 				9237220126146E280082B90F /* ImagePublisher.swift in Sources */,
 				BFD945DF244DC5E80012785A /* AppDelegate.swift in Sources */,
+				92F9351E2616F67B00AC6D1E /* BookmarksViewModelState.swift in Sources */,
 				923721FC26146D570082B90F /* StatusValueView.swift in Sources */,
 				BFD945E1244DC5E80012785A /* SceneDelegate.swift in Sources */,
 				923721F7261455AF0082B90F /* RepositoryInfoView.swift in Sources */,
