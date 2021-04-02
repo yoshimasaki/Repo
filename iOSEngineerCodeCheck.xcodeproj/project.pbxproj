@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7EFA1320101B54DEF80997D9 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1239BA7993292775D7FF8 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		9223D55D2617D8C0003A58E3 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223D55C2617D8C0003A58E3 /* CircleButton.swift */; };
+		9223D56F2617DBE6003A58E3 /* SearchHistoryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223D56D2617DBE6003A58E3 /* SearchHistoryEntry+CoreDataClass.swift */; };
 		923721CB261443760082B90F /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721CA261443760082B90F /* SearchField.swift */; };
 		923721D3261443A20082B90F /* SearchFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721D2261443A20082B90F /* SearchFieldState.swift */; };
 		923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721D7261443B70082B90F /* SearchFieldModelState.swift */; };
@@ -107,6 +108,7 @@
 		05B5E1BAB4274D152F5747B7 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B6CEE3F780604552D8D6FA3 /* Pods-iOSEngineerCodeCheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.release.xcconfig"; sourceTree = "<group>"; };
 		9223D55C2617D8C0003A58E3 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		9223D56D2617DBE6003A58E3 /* SearchHistoryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchHistoryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		923721CA261443760082B90F /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		923721D2261443A20082B90F /* SearchFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldState.swift; sourceTree = "<group>"; };
 		923721D7261443B70082B90F /* SearchFieldModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldModelState.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 		92F935062616DAE400AC6D1E /* ManagedObject */ = {
 			isa = PBXGroup;
 			children = (
+				9223D56D2617DBE6003A58E3 /* SearchHistoryEntry+CoreDataClass.swift */,
 				92F935072616DB2B00AC6D1E /* RepositoryBookmark+CoreDataClass.swift */,
 				92F935092616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift */,
 			);
@@ -929,6 +932,7 @@
 				92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */,
 				92730D9E261497DC00432854 /* UIColor+Arithmetic.swift in Sources */,
 				92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */,
+				9223D56F2617DBE6003A58E3 /* SearchHistoryEntry+CoreDataClass.swift in Sources */,
 				92F9350B2616DB2B00AC6D1E /* RepositoryBookmark+CoreDataClass.swift in Sources */,
 				92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */,
 				9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */,

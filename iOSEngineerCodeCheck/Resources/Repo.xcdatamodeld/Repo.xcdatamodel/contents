@@ -29,8 +29,18 @@
         <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="repositoryBookmark" maxCount="1" deletionRule="Nullify" destinationEntity="RepositoryBookmark" inverseName="repositoryOwner" inverseEntity="RepositoryBookmark"/>
     </entity>
+    <entity name="SearchHistoryEntry" representedClassName="SearchHistoryEntry" syncable="YES" codeGenerationType="category">
+        <attribute name="searchedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="searchTerm" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="searchTerm"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <elements>
         <element name="RepositoryBookmark" positionX="-63" positionY="-18" width="128" height="314"/>
         <element name="RepositoryOwner" positionX="-54" positionY="90" width="128" height="119"/>
+        <element name="SearchHistoryEntry" positionX="-54" positionY="135" width="128" height="59"/>
     </elements>
 </model>
