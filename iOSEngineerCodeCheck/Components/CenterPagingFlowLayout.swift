@@ -11,19 +11,19 @@ import UIKit
 final class CenterPagingFlowLayout: UICollectionViewFlowLayout {
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        centerPagingTargetContentOffset(for: proposedContentOffset)
+        centerPagingTargetContentOffset(for: proposedContentOffset, velocity: velocity)
     }
 
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
-        centerPagingTargetContentOffset(for: proposedContentOffset)
-    }
-
-    private func centerPagingTargetContentOffset(for proposedContentOffset: CGPoint) -> CGPoint {
+    private func centerPagingTargetContentOffset(for proposedContentOffset: CGPoint, velocity: CGPoint = .zero) -> CGPoint {
         guard let aCollectionView = collectionView else {
             return proposedContentOffset
         }
 
-        let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: aCollectionView.bounds.width, height: aCollectionView.bounds.height)
+        let isRightDirection = velocity.x > 0
+        let currentContentOffset = aCollectionView.contentOffset
+        let width = aCollectionView.bounds.width
+
+        let targetRect = CGRect(x: currentContentOffset.x + (isRightDirection ? width : -(width * 0.5)), y: 0, width: aCollectionView.bounds.width, height: aCollectionView.bounds.height)
 
         if let attributes = layoutAttributesForElements(in: targetRect)?.first {
             let padding = (aCollectionView.bounds.width - attributes.bounds.width) * 0.5
