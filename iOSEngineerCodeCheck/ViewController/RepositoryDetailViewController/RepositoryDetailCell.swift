@@ -18,8 +18,8 @@ final class RepositoryDetailCell: UICollectionViewCell {
     let repositoryInfoView = RepositoryInfoView(frame: .zero)
     let markdownCardView = MarkdownCardView(frame: .zero)
     private let closeButton = UIButton(type: .system)
-    private let bookmarkButton = UIButton.circleButton(systemImageName: "bookmark")
-    private let shareButton = UIButton.circleButton(systemImageName: "square.and.arrow.up")
+    private let bookmarkButton = CircleButton(systemImageName: "bookmark")
+    private let shareButton = CircleButton(systemImageName: "square.and.arrow.up")
 
     var readmePublisher: AnyPublisher<ReadmeInfo?, Never>? {
         didSet {
@@ -73,8 +73,13 @@ final class RepositoryDetailCell: UICollectionViewCell {
         closeButton.layer.shadowRadius = 3
         closeButton.layer.shadowOpacity = 0.1
 
-        bookmarkButton.addTarget(self, action: #selector(handleBookmarkButtonTap(_:)), for: .touchUpInside)
-        shareButton.addTarget(self, action: #selector(handleShareButtonTap(_:)), for: .touchUpInside)
+        bookmarkButton.tapAction = { [weak self] in
+            self?.handleBookmarkButtonTap()
+        }
+
+        shareButton.tapAction = { [weak self] in
+            self?.handleShareButtonTap()
+        }
     }
 
     private func configureConstraints() {
@@ -118,14 +123,12 @@ final class RepositoryDetailCell: UICollectionViewCell {
         delegate?.repositoryDetailCellDidTapCloseButton(self)
     }
 
-    @objc private func handleBookmarkButtonTap(_ button: UIButton) {
+    private func handleBookmarkButtonTap() {
         delegate?.repositoryDetailCellDidTapBookmarkButton(self)
-        bookmarkButton.applyTappedEffect()
     }
 
-    @objc private func handleShareButtonTap(_ button: UIButton) {
+    private func handleShareButtonTap() {
         delegate?.repositoryDetailCellDidTapShareButton(self)
-        shareButton.applyTappedEffect()
     }
 
     private func subscribeReadme() {

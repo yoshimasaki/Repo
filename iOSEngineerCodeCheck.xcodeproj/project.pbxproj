@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7EFA1320101B54DEF80997D9 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2E1239BA7993292775D7FF8 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
+		9223D55D2617D8C0003A58E3 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223D55C2617D8C0003A58E3 /* CircleButton.swift */; };
 		923721CB261443760082B90F /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721CA261443760082B90F /* SearchField.swift */; };
 		923721D3261443A20082B90F /* SearchFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721D2261443A20082B90F /* SearchFieldState.swift */; };
 		923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923721D7261443B70082B90F /* SearchFieldModelState.swift */; };
@@ -25,7 +26,6 @@
 		924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480852613DA3400A8DEF2 /* RepositoryLicenseEntity.swift */; };
 		9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */; };
 		9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */; };
-		9246D90B2616FF140016ABDC /* UIButton+TappedEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */; };
 		926846E92617103600F69EB2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926846E82617103600F69EB2 /* NotificationView.swift */; };
 		926846F126172BC900F69EB2 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926846F026172BC900F69EB2 /* NotificationType.swift */; };
 		92730D91261493A200432854 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 92730D90261493A200432854 /* colors.json */; };
@@ -69,7 +69,6 @@
 		92F9350D2616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935092616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift */; };
 		92F935192616F65B00AC6D1E /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935182616F65B00AC6D1E /* BookmarksViewModel.swift */; };
 		92F9351E2616F67B00AC6D1E /* BookmarksViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F9351D2616F67B00AC6D1E /* BookmarksViewModelState.swift */; };
-		92F935242616F77A00AC6D1E /* UIButton+CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F935232616F77A00AC6D1E /* UIButton+CircleButton.swift */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
 		92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */; };
 		92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */; };
@@ -107,6 +106,7 @@
 /* Begin PBXFileReference section */
 		05B5E1BAB4274D152F5747B7 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B6CEE3F780604552D8D6FA3 /* Pods-iOSEngineerCodeCheckTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheckTests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheckTests/Pods-iOSEngineerCodeCheckTests.release.xcconfig"; sourceTree = "<group>"; };
+		9223D55C2617D8C0003A58E3 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		923721CA261443760082B90F /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		923721D2261443A20082B90F /* SearchFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldState.swift; sourceTree = "<group>"; };
 		923721D7261443B70082B90F /* SearchFieldModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldModelState.swift; sourceTree = "<group>"; };
@@ -124,7 +124,6 @@
 		924480852613DA3400A8DEF2 /* RepositoryLicenseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryLicenseEntity.swift; sourceTree = "<group>"; };
 		9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Decoders.swift"; sourceTree = "<group>"; };
 		924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
-		9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TappedEffect.swift"; sourceTree = "<group>"; };
 		92515F1C2612DA48005A6905 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		926846E82617103600F69EB2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		926846F026172BC900F69EB2 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
@@ -170,7 +169,6 @@
 		92F935092616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryOwner+CoreDataClass.swift"; sourceTree = "<group>"; };
 		92F935182616F65B00AC6D1E /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		92F9351D2616F67B00AC6D1E /* BookmarksViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModelState.swift; sourceTree = "<group>"; };
-		92F935232616F77A00AC6D1E /* UIButton+CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+CircleButton.swift"; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
 		92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelError.swift; sourceTree = "<group>"; };
 		92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -251,9 +249,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9223D55B2617D8BA003A58E3 /* CircleButton */ = {
+			isa = PBXGroup;
+			children = (
+				9223D55C2617D8C0003A58E3 /* CircleButton.swift */,
+			);
+			path = CircleButton;
+			sourceTree = "<group>";
+		};
 		923721C8261443570082B90F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9223D55B2617D8BA003A58E3 /* CircleButton */,
 				926846E726170FDF00F69EB2 /* NotificationView */,
 				928DAFB926154D9700FBE3E4 /* MarkdownCardView */,
 				9237220526146E840082B90F /* RepositoryCell */,
@@ -338,8 +345,6 @@
 				92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */,
 				92AFF4EF2616801800F0E6AB /* UIView+Snapshot.swift */,
 				92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */,
-				92F935232616F77A00AC6D1E /* UIButton+CircleButton.swift */,
-				9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -909,6 +914,7 @@
 				92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */,
 				92F934CE2616A37100AC6D1E /* TabBarController.swift in Sources */,
 				92F934DF2616CE0600AC6D1E /* TabBarItem.swift in Sources */,
+				9223D55D2617D8C0003A58E3 /* CircleButton.swift in Sources */,
 				92F934F92616D5D800AC6D1E /* Persistent.swift in Sources */,
 				92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */,
 				92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */,
@@ -927,7 +933,6 @@
 				92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */,
 				9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */,
 				923721D8261443B70082B90F /* SearchFieldModelState.swift in Sources */,
-				9246D90B2616FF140016ABDC /* UIButton+TappedEffect.swift in Sources */,
 				924480862613DA3400A8DEF2 /* RepositoryLicenseEntity.swift in Sources */,
 				92AFF4FB261680C500F0E6AB /* RepositoryInfoViewAnimator.swift in Sources */,
 				923721DD261443C70082B90F /* SearchFieldModel.swift in Sources */,
@@ -951,7 +956,6 @@
 				92FBE4FE26135C45005E9B9A /* SearchViewModelError.swift in Sources */,
 				92730DA32614987E00432854 /* GitHubLanguageColor.swift in Sources */,
 				92F934E42616CE1E00AC6D1E /* TabBar.swift in Sources */,
-				92F935242616F77A00AC6D1E /* UIButton+CircleButton.swift in Sources */,
 				924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */,
 				92F934F32616D0AD00AC6D1E /* TabBarItemNavigationController.swift in Sources */,
 				928DAFC326154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift in Sources */,
