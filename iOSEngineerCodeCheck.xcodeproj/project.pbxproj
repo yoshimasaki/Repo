@@ -58,6 +58,8 @@
 		92F934DA2616CDF200AC6D1E /* TabBarItemProvidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934D92616CDF200AC6D1E /* TabBarItemProvidable.swift */; };
 		92F934DF2616CE0600AC6D1E /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934DE2616CE0600AC6D1E /* TabBarItem.swift */; };
 		92F934E42616CE1E00AC6D1E /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E32616CE1E00AC6D1E /* TabBar.swift */; };
+		92F934EA2616D08F00AC6D1E /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934E92616D08F00AC6D1E /* BookmarksViewController.swift */; };
+		92F934F32616D0AD00AC6D1E /* TabBarItemNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934F22616D0AD00AC6D1E /* TabBarItemNavigationController.swift */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
 		92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */; };
 		92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */; };
@@ -147,6 +149,8 @@
 		92F934D92616CDF200AC6D1E /* TabBarItemProvidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemProvidable.swift; sourceTree = "<group>"; };
 		92F934DE2616CE0600AC6D1E /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		92F934E32616CE1E00AC6D1E /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		92F934E92616D08F00AC6D1E /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		92F934F22616D0AD00AC6D1E /* TabBarItemNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemNavigationController.swift; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
 		92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelError.swift; sourceTree = "<group>"; };
 		92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -425,8 +429,10 @@
 		92F4C0D92612F81B007C90AF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				92F934F12616D0A800AC6D1E /* TabBarItemNavigationController */,
 				92F934CC2616A34200AC6D1E /* TabBarController */,
 				92FBE50226135F19005E9B9A /* SearchViewController */,
+				92F934E82616D07F00AC6D1E /* BookmarksViewController */,
 				92FBE4EF261353A7005E9B9A /* RepositoryDetailViewController */,
 			);
 			path = ViewController;
@@ -453,6 +459,22 @@
 				92F934E32616CE1E00AC6D1E /* TabBar.swift */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		92F934E82616D07F00AC6D1E /* BookmarksViewController */ = {
+			isa = PBXGroup;
+			children = (
+				92F934E92616D08F00AC6D1E /* BookmarksViewController.swift */,
+			);
+			path = BookmarksViewController;
+			sourceTree = "<group>";
+		};
+		92F934F12616D0A800AC6D1E /* TabBarItemNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				92F934F22616D0AD00AC6D1E /* TabBarItemNavigationController.swift */,
+			);
+			path = TabBarItemNavigationController;
 			sourceTree = "<group>";
 		};
 		92FBE4EF261353A7005E9B9A /* RepositoryDetailViewController */ = {
@@ -824,6 +846,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F934EA2616D08F00AC6D1E /* BookmarksViewController.swift in Sources */,
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
 				92AFF4EB26167F3C00F0E6AB /* CenterPagingFlowLayout.swift in Sources */,
 				92AFF4F6261680A700F0E6AB /* TransitionSourceViewProvidable.swift in Sources */,
@@ -867,6 +890,7 @@
 				92730DA32614987E00432854 /* GitHubLanguageColor.swift in Sources */,
 				92F934E42616CE1E00AC6D1E /* TabBar.swift in Sources */,
 				924480812613DA1F00A8DEF2 /* RepositoryOwnerEntity.swift in Sources */,
+				92F934F32616D0AD00AC6D1E /* TabBarItemNavigationController.swift in Sources */,
 				928DAFC326154EA100FBE3E4 /* RepositoryDetailCellDelegate.swift in Sources */,
 				923721CB261443760082B90F /* SearchField.swift in Sources */,
 				9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */,
