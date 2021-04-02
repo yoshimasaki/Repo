@@ -10,6 +10,8 @@ import UIKit
 
 final class RepositoryDetailViewController: UIViewController {
 
+    weak var delegate: RepositoryDetailViewControllerDelegate?
+
     var repositories: [RepositoryEntity] {
         get {
             viewModel.repositories
@@ -98,7 +100,7 @@ final class RepositoryDetailViewController: UIViewController {
         if presenting {
             cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0))
         } else {
-            cell = collectionView.cellForItem(at: viewModel.lastSelectedItemIndexPath)
+            cell = collectionView.cellForItem(at: currentVisibleCellIndexPath ?? IndexPath(item: 0, section: 0))
         }
 
         guard let detailCell = cell as? RepositoryDetailCell else {
@@ -107,11 +109,35 @@ final class RepositoryDetailViewController: UIViewController {
 
         return detailCell.repositoryInfoView
     }
+
+    private var currentVisibleCellIndexPath: IndexPath? {
+        let xOffset = collectionView.contentOffset.x
+        let cells = collectionView.visibleCells
+
+        let minItem = cells.map({ abs($0.frame.minX.distance(to: xOffset)) }).enumerated().min { (lhs, rhs) -> Bool in
+            lhs.element < rhs.element
+        }
+
+        guard let visibleCellIndex = minItem?.offset else {
+            return nil
+        }
+
+        let visibleCell = cells[visibleCellIndex]
+
+        return collectionView.indexPath(for: visibleCell)
+    }
+
+    private var currentVisibleRepository: RepositoryEntity {
+        let indexPath = currentVisibleCellIndexPath ?? IndexPath(item: 0, section: 0)
+
+        return repositories[indexPath.item]
+    }
 }
 
 extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
 
     func repositoryDetailCellDidTapCloseButton(_ cell: RepositoryDetailCell) {
+        delegate?.repositoryDetailViewController(self, willCloseWithVisible: currentVisibleRepository)
         navigationController?.popViewController(animated: true)
     }
 }

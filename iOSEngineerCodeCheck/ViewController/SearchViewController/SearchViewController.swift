@@ -182,11 +182,28 @@ final class SearchViewController: UIViewController {
 
         detailViewController.repositories = viewModel.repositories
         detailViewController.lastSelectedItemIndexPath = viewModel.lastSelectedItemIndexPath
+        detailViewController.delegate = self
+
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 
     private func lastSelectedRepositoryCell() -> RepositoryCell? {
         collectionView.cellForItem(at: viewModel.lastSelectedItemIndexPath) as? RepositoryCell
+    }
+
+    private func scrollCellItem(to indexPath: IndexPath, animated: Bool) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: animated)
+    }
+
+    private func scrollTo(repository: RepositoryEntity, animated: Bool) {
+        guard let indexPath = viewModel.indexPath(for: repository) else {
+            return
+        }
+
+        // 遷移の時の sourceView を lastSelectedRepositoryCell() で返してるので lastSelectedItemIndexPath を更新する必要がある。
+        // 副作用なのでここでするのは良くない。
+        viewModel.lastSelectedItemIndexPath = indexPath
+        scrollCellItem(to: indexPath, animated: animated)
     }
 }
 
@@ -215,5 +232,12 @@ extension SearchViewController: TransitionSourceViewProvidable {
 
     func sourceView(for animator: RepositoryInfoViewAnimator) -> UIView? {
         lastSelectedRepositoryCell()
+    }
+}
+
+extension SearchViewController: RepositoryDetailViewControllerDelegate {
+
+    func repositoryDetailViewController(_ detailViewController: RepositoryDetailViewController, willCloseWithVisible repository: RepositoryEntity) {
+        scrollTo(repository: repository, animated: false)
     }
 }

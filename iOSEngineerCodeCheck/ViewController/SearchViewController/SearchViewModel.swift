@@ -52,6 +52,14 @@ final class SearchViewModel {
         apiClient.cancel()
     }
 
+    func indexPath(for repository: RepositoryEntity) -> IndexPath? {
+        guard let index = repositories.firstIndex(where: { $0.fullName == repository.fullName }) else {
+            return nil
+        }
+
+        return IndexPath(item: index, section: 0)
+    }
+
     private func searchViewModelError(with error: GitHubApiClientError) -> SearchViewModelError {
         switch error {
         case .cannotMakeSearchUrl(searchTerm: let searchTerm):

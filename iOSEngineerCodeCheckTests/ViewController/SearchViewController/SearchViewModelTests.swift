@@ -93,4 +93,18 @@ class SearchViewModelTests: XCTestCase {
         let repository = viewModel.lastSelectedRepository
         XCTAssertEqual(repository.fullName, "dtrupenn/Tetris")
     }
+
+    func testIndexPathForRepository() throws {
+        let data = try XCTUnwrap(SearchResponseStub.searchResponseJsonString.data(using: .utf8))
+        let url = try XCTUnwrap(try? client.searchUrl(with: "swift"))
+        let httpResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        fetcher.response = httpResponse
+        fetcher.data = data
+
+        viewModel.searchRepository(by: "swift")
+
+        let indexPath = viewModel.indexPath(for: viewModel.repositories[0])
+        XCTAssertEqual(indexPath, IndexPath(item: 0, section: 0))
+    }
 }
