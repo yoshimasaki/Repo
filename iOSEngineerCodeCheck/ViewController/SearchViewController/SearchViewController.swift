@@ -19,6 +19,10 @@ final class SearchViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     private let collectionViewDataSource = RepositoryCollectionViewDataSource()
 
+    private var aTabBarController: TabBarController? {
+        tabBarController as? TabBarController
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -184,6 +188,7 @@ final class SearchViewController: UIViewController {
         detailViewController.lastSelectedItemIndexPath = viewModel.lastSelectedItemIndexPath
         detailViewController.delegate = self
 
+        aTabBarController?.updateFloatingTabBarVisibility(false)
         navigationController?.pushViewController(detailViewController, animated: true)
     }
 
@@ -239,5 +244,16 @@ extension SearchViewController: RepositoryDetailViewControllerDelegate {
 
     func repositoryDetailViewController(_ detailViewController: RepositoryDetailViewController, willCloseWithVisible repository: RepositoryEntity) {
         scrollTo(repository: repository, animated: false)
+        aTabBarController?.updateFloatingTabBarVisibility(true)
+    }
+}
+
+extension SearchViewController: TabBarItemProvidable {
+
+    var aTabBarItem: TabBarItem? {
+        let searchIcon = UIImage(systemName: "magnifyingglass")
+        assert(searchIcon != nil, "magnifyingglass is not exist in SF Symbols")
+
+        return TabBarItem(icon: searchIcon!, title: "Search")
     }
 }
