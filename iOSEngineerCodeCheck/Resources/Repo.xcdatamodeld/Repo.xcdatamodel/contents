@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RepositoryBookmark" representedClassName="RepositoryBookmark" syncable="YES" codeGenerationType="category">
+        <attribute name="avatarUrl" optional="YES" attributeType="String"/>
+        <attribute name="bookmarkCreationDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
+        <attribute name="forksCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="htmlUrl" optional="YES" attributeType="String"/>
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="languagesUrl" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="openIssuesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pushedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="repositoryBookmarkID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="reposUrl" optional="YES" attributeType="String"/>
+        <attribute name="stargazersCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="watchersCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="repositoryOwner" maxCount="1" deletionRule="Cascade" destinationEntity="RepositoryOwner" inverseName="repositoryBookmark" inverseEntity="RepositoryOwner"/>
+    </entity>
+    <entity name="RepositoryOwner" representedClassName="RepositoryOwner" syncable="YES" codeGenerationType="category">
+        <attribute name="avatarUrl" optional="YES" attributeType="String"/>
+        <attribute name="login" optional="YES" attributeType="String"/>
+        <attribute name="repositoryOwnerID" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="reposUrl" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="repositoryBookmark" maxCount="1" deletionRule="Nullify" destinationEntity="RepositoryBookmark" inverseName="repositoryOwner" inverseEntity="RepositoryBookmark"/>
+    </entity>
+    <elements>
+        <element name="RepositoryBookmark" positionX="-63" positionY="-18" width="128" height="314"/>
+        <element name="RepositoryOwner" positionX="-54" positionY="90" width="128" height="119"/>
+    </elements>
+</model>

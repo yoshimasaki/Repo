@@ -140,6 +140,11 @@ extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
         delegate?.repositoryDetailViewController(self, willCloseWithVisible: currentVisibleRepository)
         navigationController?.popViewController(animated: true)
     }
+
+    func repositoryDetailCellDidTapBookmarkButton(_ cell: RepositoryDetailCell) {
+        viewModel.bookmarkRepository(currentVisibleRepository)
+        // TODO: present notify bezel ui
+    }
 }
 
 extension RepositoryDetailViewController: TransitionSourceViewProvidable {

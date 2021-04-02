@@ -13,9 +13,23 @@ final class RepositoryDetailViewModel {
     var repositories: [RepositoryEntity] = []
     var lastSelectedItemIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
-    private let fetcher: URLFetchable
+    private let persistent: Persistent
 
-    init(fetcher: URLFetchable = URLFetcher()) {
-        self.fetcher = fetcher
+    init(persistent: Persistent = Persistent.shared) {
+        self.persistent = persistent
+    }
+
+    func bookmarkRepository(_ repository: RepositoryEntity) {
+        let context = persistent.viewContext
+
+        guard !RepositoryBookmark.isExistRepositoryBookmark(for: repository, context: context) else {
+            return
+        }
+
+        context.perform {
+            _ = RepositoryBookmark.repositoryBookmark(with: repository, context: context)
+
+            self.persistent.saveContext()
+        }
     }
 }
