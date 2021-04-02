@@ -26,6 +26,8 @@
 		9244808C2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244808B2613DABA00A8DEF2 /* JSONDecoder+Decoders.swift */; };
 		9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */; };
 		9246D90B2616FF140016ABDC /* UIButton+TappedEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */; };
+		926846E92617103600F69EB2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926846E82617103600F69EB2 /* NotificationView.swift */; };
+		926846F126172BC900F69EB2 /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926846F026172BC900F69EB2 /* NotificationType.swift */; };
 		92730D91261493A200432854 /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 92730D90261493A200432854 /* colors.json */; };
 		92730D96261494B300432854 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730D95261494B300432854 /* UIColor+Extensions.swift */; };
 		92730D9E261497DC00432854 /* UIColor+Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */; };
@@ -124,6 +126,8 @@
 		924480992613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+StatusCode.swift"; sourceTree = "<group>"; };
 		9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TappedEffect.swift"; sourceTree = "<group>"; };
 		92515F1C2612DA48005A6905 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		926846E82617103600F69EB2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		926846F026172BC900F69EB2 /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		92730D90261493A200432854 /* colors.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = colors.json; sourceTree = "<group>"; };
 		92730D95261494B300432854 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Arithmetic.swift"; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 		923721C8261443570082B90F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				926846E726170FDF00F69EB2 /* NotificationView */,
 				928DAFB926154D9700FBE3E4 /* MarkdownCardView */,
 				9237220526146E840082B90F /* RepositoryCell */,
 				923721F5261455A70082B90F /* RepositoryInfoView */,
@@ -337,6 +342,15 @@
 				9246D90A2616FF140016ABDC /* UIButton+TappedEffect.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		926846E726170FDF00F69EB2 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				926846E82617103600F69EB2 /* NotificationView.swift */,
+				926846F026172BC900F69EB2 /* NotificationType.swift */,
+			);
+			path = NotificationView;
 			sourceTree = "<group>";
 		};
 		927FC5512613E98F00DC9812 /* Foundation */ = {
@@ -900,6 +914,7 @@
 				92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */,
 				92F934DA2616CDF200AC6D1E /* TabBarItemProvidable.swift in Sources */,
 				928DAFD826156EBC00FBE3E4 /* GitHubReadmePublisher.swift in Sources */,
+				926846F126172BC900F69EB2 /* NotificationType.swift in Sources */,
 				928DAFD326156E9D00FBE3E4 /* ReadmeEntity.swift in Sources */,
 				924480772613D9F100A8DEF2 /* SearchResultEntity.swift in Sources */,
 				923721D3261443A20082B90F /* SearchFieldState.swift in Sources */,
@@ -945,6 +960,7 @@
 				9237220726146EA90082B90F /* RepositoryCell.swift in Sources */,
 				92F934B22616A06E00AC6D1E /* URLRequest+UserAgent.swift in Sources */,
 				927FC54D2613E96C00DC9812 /* URLFetcher.swift in Sources */,
+				926846E92617103600F69EB2 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

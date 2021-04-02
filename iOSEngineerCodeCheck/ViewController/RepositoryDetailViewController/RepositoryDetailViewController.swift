@@ -31,6 +31,7 @@ final class RepositoryDetailViewController: UIViewController {
     }
 
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+    private let notificationView = NotificationView(frame: .zero)
 
     private let viewModel = RepositoryDetailViewModel()
     private let collectionViewDataSource = RepositoryDetailCollectionDataSource()
@@ -61,18 +62,25 @@ final class RepositoryDetailViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.alwaysBounceVertical = false
+
+        notificationView.isHidden = true
     }
 
     private func configureConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        notificationView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
+        view.addSubview(notificationView)
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            notificationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            notificationView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 
@@ -178,8 +186,11 @@ extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
     }
 
     func repositoryDetailCellDidTapBookmarkButton(_ cell: RepositoryDetailCell) {
-        viewModel.bookmarkRepository(currentVisibleRepository)
-        // TODO: present notify bezel ui
+        if viewModel.bookmarkRepository(currentVisibleRepository) {
+            notificationView.show(messages: R.string.localizable.bookmarkIt())
+        } else {
+            notificationView.show(messages: R.string.localizable.alreadyBookmark())
+        }
     }
 
     func repositoryDetailCellDidTapShareButton(_ cell: RepositoryDetailCell) {
