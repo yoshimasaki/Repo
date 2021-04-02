@@ -58,7 +58,6 @@ final class TabBarController: UITabBarController {
         }
 
         floatingTabBar.items = itemProvidables.compactMap { $0.aTabBarItem }
-        floatingTabBar.selectedItemIndex = selectedIndex
     }
 
     private func handleFloatingTabBarItemTap(item: TabBarItem, tabIndex: Int) {
