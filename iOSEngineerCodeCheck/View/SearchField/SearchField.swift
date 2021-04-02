@@ -66,6 +66,8 @@ final class SearchField: UIView {
         textField.font = UIFont.systemFont(ofSize: 24)
         textField.delegate = self
         textField.returnKeyType = .search
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(handleTextFieldEditingChanged(sender:)), for: .editingChanged)
 
         placeholderLabel.font = UIFont.systemFont(ofSize: 24)
