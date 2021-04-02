@@ -19,6 +19,7 @@ final class RepositoryDetailCell: UICollectionViewCell {
     let markdownCardView = MarkdownCardView(frame: .zero)
     private let closeButton = UIButton(type: .system)
     private let bookmarkButton = UIButton.circleButton(systemImageName: "bookmark")
+    private let shareButton = UIButton.circleButton(systemImageName: "square.and.arrow.up")
 
     var readmePublisher: AnyPublisher<ReadmeInfo?, Never>? {
         didSet {
@@ -73,6 +74,7 @@ final class RepositoryDetailCell: UICollectionViewCell {
         closeButton.layer.shadowOpacity = 0.1
 
         bookmarkButton.addTarget(self, action: #selector(handleBookmarkButtonTap(_:)), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(handleShareButtonTap(_:)), for: .touchUpInside)
     }
 
     private func configureConstraints() {
@@ -80,11 +82,13 @@ final class RepositoryDetailCell: UICollectionViewCell {
         markdownCardView.translatesAutoresizingMaskIntoConstraints = false
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         bookmarkButton.translatesAutoresizingMaskIntoConstraints = false
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(repositoryInfoView)
         contentView.addSubview(closeButton)
         contentView.addSubview(markdownCardView)
         contentView.addSubview(bookmarkButton)
+        contentView.addSubview(shareButton)
 
         NSLayoutConstraint.activate([
             repositoryInfoView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 24),
@@ -103,7 +107,10 @@ final class RepositoryDetailCell: UICollectionViewCell {
             markdownCardView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -8),
 
             bookmarkButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 80),
-            bookmarkButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -4)
+            bookmarkButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+
+            shareButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: -80),
+            shareButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -4)
         ])
     }
 
@@ -114,6 +121,11 @@ final class RepositoryDetailCell: UICollectionViewCell {
     @objc private func handleBookmarkButtonTap(_ button: UIButton) {
         delegate?.repositoryDetailCellDidTapBookmarkButton(self)
         bookmarkButton.applyTappedEffect()
+    }
+
+    @objc private func handleShareButtonTap(_ button: UIButton) {
+        delegate?.repositoryDetailCellDidTapShareButton(self)
+        shareButton.applyTappedEffect()
     }
 
     private func subscribeReadme() {

@@ -11,4 +11,5 @@ import Foundation
 protocol RepositoryDetailCellDelegate: class {
     func repositoryDetailCellDidTapCloseButton(_ cell: RepositoryDetailCell)
     func repositoryDetailCellDidTapBookmarkButton(_ cell: RepositoryDetailCell)
+    func repositoryDetailCellDidTapShareButton(_ cell: RepositoryDetailCell)
 }

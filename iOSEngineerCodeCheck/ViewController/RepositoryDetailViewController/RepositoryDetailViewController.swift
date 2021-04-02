@@ -155,6 +155,19 @@ final class RepositoryDetailViewController: UIViewController {
 
         return repositories[indexPath.item]
     }
+
+    private func presentActivityViewController() {
+        guard
+            let urlString = currentVisibleRepository.htmlUrl,
+            let url = URL(string: urlString)
+        else {
+            return
+        }
+
+        let shareSheet = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+
+        present(shareSheet, animated: true, completion: nil)
+    }
 }
 
 extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
@@ -167,6 +180,10 @@ extension RepositoryDetailViewController: RepositoryDetailCellDelegate {
     func repositoryDetailCellDidTapBookmarkButton(_ cell: RepositoryDetailCell) {
         viewModel.bookmarkRepository(currentVisibleRepository)
         // TODO: present notify bezel ui
+    }
+
+    func repositoryDetailCellDidTapShareButton(_ cell: RepositoryDetailCell) {
+        presentActivityViewController()
     }
 }
 
