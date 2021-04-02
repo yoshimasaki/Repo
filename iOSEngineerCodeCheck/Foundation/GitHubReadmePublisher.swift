@@ -46,7 +46,7 @@ enum GitHubReadmePublisher {
             return Just(nil).eraseToAnyPublisher()
         }
 
-        let dataTaskPublisher = URLSession.shared.dataTaskPublisher(for: url)
+        let dataTaskPublisher = URLSession.shared.dataTaskPublisher(for: URLRequest.urlRequest(with: url))
             .catch({ _ in Empty<URLSession.DataTaskPublisher.Output, Never>() })
             .map({ (data, _) -> ReadmeInfo? in
                 guard

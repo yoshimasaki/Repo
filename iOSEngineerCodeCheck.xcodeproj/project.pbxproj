@@ -52,6 +52,8 @@
 		92F2F8F926169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2F8F826169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift */; };
 		92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4C0C32612E09E007C90AF /* R.generated.swift */; };
 		92F4C0DB2612F8EB007C90AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F4C0DA2612F8EB007C90AF /* Localizable.strings */; };
+		92F934B22616A06E00AC6D1E /* URLRequest+UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */; };
+		92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B62616A08100AC6D1E /* UserAgent.swift */; };
 		92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */; };
 		92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */; };
 		92FBE4F926135A7B005E9B9A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */; };
@@ -135,6 +137,8 @@
 		92F2F8F826169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewControllerDelegate.swift; sourceTree = "<group>"; };
 		92F4C0C32612E09E007C90AF /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		92F4C0DA2612F8EB007C90AF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+UserAgent.swift"; sourceTree = "<group>"; };
+		92F934B62616A08100AC6D1E /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		92FBE4EA26135363005E9B9A /* RepositoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModel.swift; sourceTree = "<group>"; };
 		92FBE4F326135585005E9B9A /* RepositoryDetailViewModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewModelError.swift; sourceTree = "<group>"; };
 		92FBE4F826135A7B005E9B9A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 				92730D95261494B300432854 /* UIColor+Extensions.swift */,
 				92730D9D261497DC00432854 /* UIColor+Arithmetic.swift */,
 				92AFF4EF2616801800F0E6AB /* UIView+Snapshot.swift */,
+				92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +430,7 @@
 				927FC54C2613E96C00DC9812 /* URLFetcher.swift */,
 				9237220026146E280082B90F /* ImagePublisher.swift */,
 				928DAFD726156EBC00FBE3E4 /* GitHubReadmePublisher.swift */,
+				92F934B62616A08100AC6D1E /* UserAgent.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -802,6 +808,7 @@
 				92AFF4EB26167F3C00F0E6AB /* CenterPagingFlowLayout.swift in Sources */,
 				92AFF4F6261680A700F0E6AB /* TransitionSourceViewProvidable.swift in Sources */,
 				92F2F8F926169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift in Sources */,
+				92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */,
 				92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */,
 				92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */,
 				928DAFD826156EBC00FBE3E4 /* GitHubReadmePublisher.swift in Sources */,
@@ -840,6 +847,7 @@
 				923721CB261443760082B90F /* SearchField.swift in Sources */,
 				9244809A2613E12700A8DEF2 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				9237220726146EA90082B90F /* RepositoryCell.swift in Sources */,
+				92F934B22616A06E00AC6D1E /* URLRequest+UserAgent.swift in Sources */,
 				927FC54D2613E96C00DC9812 /* URLFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
