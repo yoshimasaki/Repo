@@ -47,6 +47,12 @@ final class RepositoryDetailViewController: UIViewController {
         }
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        invalidateColectionViewFlowLayout()
+    }
+
     func updateVisibleCellCloseButtonVisibility(_ isVisible: Bool, animating: Bool = true) {
         (collectionView.visibleCells as? [RepositoryDetailCell])?.forEach { $0.updateCloseButtonVisibility(isVisible, animating: animating) }
     }
@@ -82,12 +88,29 @@ final class RepositoryDetailViewController: UIViewController {
     private var collectionViewLayout: UICollectionViewFlowLayout {
         let layout = CenterPagingFlowLayout()
 
-        layout.itemSize = view.bounds.inset(by: UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)).size
+        layout.itemSize = layoutItemSize
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.sectionInset = layoutSectionInset
 
         return layout
+    }
+
+    private var layoutItemSize: CGSize {
+        view.bounds.inset(by: UIEdgeInsets(top: 0, left: view.safeAreaInsets.left + 24, bottom: 0, right: view.safeAreaInsets.right + 24)).size
+    }
+
+    private var layoutSectionInset: UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: view.safeAreaInsets.left + 16, bottom: 0, right: view.safeAreaInsets.right + 16)
+    }
+
+    private func invalidateColectionViewFlowLayout() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+
+        layout.itemSize = layoutItemSize
+        layout.sectionInset = layoutSectionInset
     }
 
     private func scrollToLastSelectedItem() {
