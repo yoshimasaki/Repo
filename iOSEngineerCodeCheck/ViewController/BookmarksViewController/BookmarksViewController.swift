@@ -115,6 +115,7 @@ final class BookmarksViewController: UIViewController {
 
     private func updateCollectionViewContentInset() {
         collectionView.contentInset.top = searchField.bounds.height + 32
+        collectionView.contentInset.bottom = view.bounds.height - (aTabBarController?.floatingTabBar.frame.minY ?? 0)
     }
 
     // MARK: - Subscriptions

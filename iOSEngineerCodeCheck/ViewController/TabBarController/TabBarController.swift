@@ -10,7 +10,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
 
-    private let floatingTabBar = TabBar(frame: .zero)
+    let floatingTabBar = TabBar(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
