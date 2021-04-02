@@ -11,7 +11,7 @@ import UIKit
 final class RepositoryDetailViewModel {
 
     var repositories: [RepositoryEntity] = []
-    var lastSelectedItemIndexPath: IndexPath = .init()
+    var lastSelectedItemIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     private let fetcher: URLFetchable
 
