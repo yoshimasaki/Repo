@@ -13,6 +13,14 @@ import CoreData
 @objc(RepositoryBookmark)
 public final class RepositoryBookmark: NSManagedObject {
 
+    static func isExistRepositoryBookmark(for entity: RepositoryEntity, context: NSManagedObjectContext) -> Bool {
+        let request: NSFetchRequest<RepositoryBookmark> = RepositoryBookmark.fetchRequest()
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "fullName == %@", entity.fullName ?? "")
+
+        return ((try? context.count(for: request)) ?? 0) == 1
+    }
+
     static func repositoryBookmark(with entity: RepositoryEntity, context: NSManagedObjectContext) -> RepositoryBookmark {
         let bookmark = RepositoryBookmark(context: context)
 
