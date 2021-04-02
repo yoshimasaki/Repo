@@ -56,13 +56,13 @@ class SearchViewModelTests: XCTestCase {
     }
 
     func testSearchRepository_fetch_error() throws {
-        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift"))
+        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift"))
 
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
         XCTAssertEqual(viewModel.state, .none)
-        XCTAssertEqual(viewModel.error, .faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+        XCTAssertEqual(viewModel.error, .faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
     func testSearchRepository_json_decode_error() throws {
@@ -77,7 +77,7 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
         XCTAssertEqual(viewModel.state, .none)
-        XCTAssertEqual(viewModel.error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+        XCTAssertEqual(viewModel.error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
     func testLastSelectedRepository() throws {

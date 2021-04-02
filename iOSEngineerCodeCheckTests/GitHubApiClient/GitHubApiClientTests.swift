@@ -88,7 +88,7 @@ class GitHubApiClientTests: XCTestCase {
 
     func testSearchRepository_fetch_error() throws {
 
-        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift"))
+        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift"))
 
         let expectation = XCTestExpectation(description: "Search repository")
 
@@ -99,7 +99,7 @@ class GitHubApiClientTests: XCTestCase {
 
             switch result {
             case .failure(let error):
-                XCTAssertEqual(error, .faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+                XCTAssertEqual(error, .faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
 
             case .success:
                 XCTFail("Never reach")
@@ -126,7 +126,7 @@ class GitHubApiClientTests: XCTestCase {
 
             switch result {
             case .failure(let error):
-                XCTAssertEqual(error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+                XCTAssertEqual(error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
 
             case .success:
                 XCTFail("Never reach")
