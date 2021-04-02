@@ -26,7 +26,7 @@ final class Persistent {
         let container = NSPersistentContainer(name: "Repo")
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let nsError = error as NSError? {
-                print("Failed to load persistent container - error: \(nsError.localizedDescription)")
+                print("Failed to load persistent container - error: \(nsError)")
             }
         })
 
@@ -60,7 +60,7 @@ final class Persistent {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                print("Database save failed - error: \(nserror.localizedDescription)")
+                print("Database save failed - error: \(nserror)")
             }
         }
     }
