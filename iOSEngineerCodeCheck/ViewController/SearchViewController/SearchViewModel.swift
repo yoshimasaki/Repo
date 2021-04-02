@@ -16,7 +16,6 @@ final class SearchViewModel {
 
     private(set) var repositories: [RepositoryEntity] = []
 
-    private var searchSessionDataTask: URLSessionTask?
     var lastSelectedItemIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     var lastSelectedRepository: RepositoryEntity {
