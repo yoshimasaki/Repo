@@ -19,11 +19,11 @@ final class RepositoryDetailViewModel {
         self.persistent = persistent
     }
 
-    func bookmarkRepository(_ repository: RepositoryEntity) {
+    func bookmarkRepository(_ repository: RepositoryEntity) -> Bool {
         let context = persistent.viewContext
 
         guard !RepositoryBookmark.isExistRepositoryBookmark(for: repository, context: context) else {
-            return
+            return false
         }
 
         context.perform {
@@ -31,5 +31,7 @@ final class RepositoryDetailViewModel {
 
             self.persistent.saveContext()
         }
+
+        return true
     }
 }

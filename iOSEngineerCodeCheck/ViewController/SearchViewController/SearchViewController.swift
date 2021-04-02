@@ -15,6 +15,7 @@ final class SearchViewController: UIViewController {
     private let searchField = SearchField(frame: .zero)
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
     private let activityIndicator = UIActivityIndicatorView(style: .large)
+    private let notificationView = NotificationView(frame: .zero)
 
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
@@ -53,16 +54,20 @@ final class SearchViewController: UIViewController {
         collectionView.delegate = self
 
         navigationController?.delegate = self
+
+        notificationView.isHidden = true
     }
 
     private func configureConstraints() {
         searchField.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        notificationView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
         view.addSubview(searchField)
         view.addSubview(activityIndicator)
+        view.addSubview(notificationView)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -75,7 +80,10 @@ final class SearchViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            notificationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            notificationView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 
@@ -117,8 +125,10 @@ final class SearchViewController: UIViewController {
 
     private func subscribeError() {
         viewModel.$error
-            .sink { (error) in
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (error) in
                 print(error?.errorDescription ?? "")
+                self?.handleError(error)
             }
             .store(in: &subscriptions)
     }
@@ -155,6 +165,25 @@ final class SearchViewController: UIViewController {
 
         case .repositoriesUpdated:
             collectionViewDataSource.updateDataSource(with: viewModel.repositories)
+        }
+    }
+
+    private func handleError(_ error: SearchViewModelError?) {
+        switch error {
+        case .cannotMakeUrl:
+            notificationView.show(type: .error, messages: R.string.localizable.cannotMakeURL())
+
+        case .faildFetch:
+            notificationView.show(type: .error, messages: R.string.localizable.failedFetch())
+
+        case .invalidHttpStatus(statusCode: let statusCode):
+            notificationView.show(type: .error, messages: R.string.localizable.httpError("\(statusCode)"))
+
+        case .jsonDecodeError:
+            notificationView.show(type: .error, messages: R.string.localizable.jsonDecodeFailed())
+
+        default:
+            break
         }
     }
 

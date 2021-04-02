@@ -8,3 +8,9 @@
 
 "Search GitHub Repository" = "GitHubのリポジトリを検索できるよー";
 "Search Bookmarks" = "Search Bookmarks";
+"Bookmark it!" = "Bookmark it!";
+"Already bookmark" = "Already bookmark";
+"Cannot make URL" = "Cannot make URL";
+"Failed fetch" = "Failed fetch";
+"HTTP error" = "HTTP error (%@)";
+"JSON decode failed" = "JSON decode failed";
