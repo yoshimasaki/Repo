@@ -51,7 +51,7 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
+        XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.error, .invalidHttpStatus(statusCode: 404))
     }
 
@@ -61,7 +61,7 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
+        XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.error, .faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
@@ -76,7 +76,7 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
+        XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
