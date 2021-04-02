@@ -17,10 +17,10 @@ final class SearchViewModel {
     private(set) var repositories: [RepositoryEntity] = []
 
     private var searchSessionDataTask: URLSessionTask?
-    var lastSelectedRowIndex = 0
+    var lastSelectedItemIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
     var lastSelectedRepository: RepositoryEntity {
-        repositories[lastSelectedRowIndex]
+        repositories[lastSelectedItemIndexPath.item]
     }
 
     init(apiClient: GitHubApiClient = GitHubApiClient()) {
@@ -52,10 +52,21 @@ final class SearchViewModel {
         apiClient.cancel()
     }
 
+    func indexPath(for repository: RepositoryEntity) -> IndexPath? {
+        guard let index = repositories.firstIndex(where: { $0.fullName == repository.fullName }) else {
+            return nil
+        }
+
+        return IndexPath(item: index, section: 0)
+    }
+
     private func searchViewModelError(with error: GitHubApiClientError) -> SearchViewModelError {
         switch error {
-        case .cannotMakeUrl(searchTerm: let searchTerm):
+        case .cannotMakeSearchUrl(searchTerm: let searchTerm):
             return .cannotMakeUrl(urlString: searchTerm)
+
+        case .cannotMakeReadmeUrl:
+            fatalError("We didn't fetch readme in here, so never reach")
 
         case .faildFetch(error: let error):
             return .faildFetch(error: error)

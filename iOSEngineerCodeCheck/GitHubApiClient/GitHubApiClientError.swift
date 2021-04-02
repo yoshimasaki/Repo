@@ -10,15 +10,19 @@ import Foundation
 
 enum GitHubApiClientError: LocalizedError, Equatable {
 
-    case cannotMakeUrl(searchTerm: String)
+    case cannotMakeSearchUrl(searchTerm: String)
+    case cannotMakeReadmeUrl(repository: RepositoryEntity)
     case faildFetch(error: Error)
     case invalidHttpStatus(statusCode: Int)
     case jsonDecodeError(error: Error)
 
     var errorDescription: String? {
         switch self {
-        case .cannotMakeUrl(searchTerm: let searchTerm):
+        case .cannotMakeSearchUrl(searchTerm: let searchTerm):
             return "Cannot make URL with \"\(searchTerm)\""
+
+        case .cannotMakeReadmeUrl(repository: let repository):
+            return "Cannot maek URL with \(repository)"
 
         case .faildFetch(error: let error):
             return "Faild to fetch search repository - error: \(error.localizedDescription)"
@@ -33,8 +37,11 @@ enum GitHubApiClientError: LocalizedError, Equatable {
 
     static func == (lhs: GitHubApiClientError, rhs: GitHubApiClientError) -> Bool {
         switch (lhs, rhs) {
-        case let (.cannotMakeUrl(lhsSearchTerm), .cannotMakeUrl(rhsSearchTerm)):
+        case let (.cannotMakeSearchUrl(lhsSearchTerm), .cannotMakeSearchUrl(rhsSearchTerm)):
             return lhsSearchTerm == rhsSearchTerm
+
+        case let (.cannotMakeReadmeUrl(lhsRepository), .cannotMakeReadmeUrl(rhsRepository)):
+            return lhsRepository.fullName == rhsRepository.fullName
 
         case (.faildFetch, .faildFetch):
             return true

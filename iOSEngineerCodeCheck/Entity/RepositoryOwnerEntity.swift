@@ -9,6 +9,7 @@
 import Foundation
 
 struct RepositoryOwnerEntity: Decodable {
+    let login: String?
     let avatarUrl: String?
     let reposUrl: String?
     let url: String?

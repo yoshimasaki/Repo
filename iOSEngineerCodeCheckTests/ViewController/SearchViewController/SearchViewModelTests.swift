@@ -51,18 +51,18 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
+        XCTAssertEqual(viewModel.state, .loaded)
         XCTAssertEqual(viewModel.error, .invalidHttpStatus(statusCode: 404))
     }
 
     func testSearchRepository_fetch_error() throws {
-        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift"))
+        fetcher.error = GitHubApiClientError.faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift"))
 
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
-        XCTAssertEqual(viewModel.error, .faildFetch(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+        XCTAssertEqual(viewModel.state, .loaded)
+        XCTAssertEqual(viewModel.error, .faildFetch(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
     func testSearchRepository_json_decode_error() throws {
@@ -76,8 +76,8 @@ class SearchViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.state, .none)
         XCTAssertNil(viewModel.error)
         viewModel.searchRepository(by: "swift")
-        XCTAssertEqual(viewModel.state, .none)
-        XCTAssertEqual(viewModel.error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeUrl(searchTerm: "swift")))
+        XCTAssertEqual(viewModel.state, .loaded)
+        XCTAssertEqual(viewModel.error, .jsonDecodeError(error: GitHubApiClientError.cannotMakeSearchUrl(searchTerm: "swift")))
     }
 
     func testLastSelectedRepository() throws {
@@ -92,5 +92,19 @@ class SearchViewModelTests: XCTestCase {
 
         let repository = viewModel.lastSelectedRepository
         XCTAssertEqual(repository.fullName, "dtrupenn/Tetris")
+    }
+
+    func testIndexPathForRepository() throws {
+        let data = try XCTUnwrap(SearchResponseStub.searchResponseJsonString.data(using: .utf8))
+        let url = try XCTUnwrap(try? client.searchUrl(with: "swift"))
+        let httpResponse = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+
+        fetcher.response = httpResponse
+        fetcher.data = data
+
+        viewModel.searchRepository(by: "swift")
+
+        let indexPath = viewModel.indexPath(for: viewModel.repositories[0])
+        XCTAssertEqual(indexPath, IndexPath(item: 0, section: 0))
     }
 }
