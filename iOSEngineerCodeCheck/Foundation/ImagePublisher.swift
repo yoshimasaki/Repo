@@ -11,7 +11,7 @@ import Combine
 
 enum ImagePublisher {
     static func imagePublisher(url: URL) -> AnyPublisher<UIImage?, Never> {
-        URLSession.shared.dataTaskPublisher(for: url)
+        URLSession.shared.dataTaskPublisher(for: URLRequest.urlRequest(with: url))
             .catch({ _ in Empty() })
             .map({ (data, _) -> UIImage? in
                 UIImage(data: data)

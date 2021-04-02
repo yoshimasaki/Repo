@@ -18,7 +18,8 @@ final class URLFetcher: URLFetchable {
     }
 
     func fetch(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        dataTask = session.dataTask(with: url) { (data, response, error) in
+        let request = URLRequest.urlRequest(with: url)
+        dataTask = session.dataTask(with: request) { (data, response, error) in
             completion(data, response, error)
         }
 
