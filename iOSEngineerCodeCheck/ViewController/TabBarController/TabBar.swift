@@ -25,7 +25,13 @@ final class TabBar: UIView {
     var itemTapAction: ((TabBarItem, Int) -> Void)?
 
     private lazy var itemStackView: UIStackView = {
-        let buttons = items.map { makeItemButton(with: $0) }
+        let buttons = items.enumerated().map { item -> UIButton in
+            let button = makeItemButton(with: item.element)
+            button.tag = item.offset
+
+            return button
+        }
+
         let stackView = UIStackView(arrangedSubviews: buttons)
 
         return stackView
@@ -60,6 +66,8 @@ final class TabBar: UIView {
         itemStackView.axis = .horizontal
         itemStackView.distribution = .fillEqually
         itemStackView.spacing = 8
+
+        updateTabBarItemsTint()
     }
 
     private func configureConstraints() {
@@ -98,6 +106,7 @@ final class TabBar: UIView {
         buttons.forEach { itemStackView.addArrangedSubview($0) }
         buttons.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
         addTabItemButtonsConstraints(buttons: buttons)
+        updateTabBarItemsTint()
     }
 
     private func addTabItemButtonsConstraints(buttons: [UIButton]) {
