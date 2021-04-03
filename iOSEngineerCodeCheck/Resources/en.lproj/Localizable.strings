@@ -14,3 +14,4 @@
 "Failed fetch" = "Failed fetch";
 "HTTP error" = "HTTP error (%@)";
 "JSON decode failed" = "JSON decode failed";
+"Delete Bookmark" = "Delete Bookmark";

@@ -88,4 +88,13 @@ final class BookmarksViewModel {
 
         return IndexPath(item: index, section: 0)
     }
+
+    func deleteBookmark(at indexPath: IndexPath) {
+        let context = persistent.viewContext
+        let bookmark = fetchedResultsController.object(at: indexPath)
+
+        context.delete(bookmark)
+
+        persistent.saveContext()
+    }
 }
