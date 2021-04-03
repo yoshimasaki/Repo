@@ -295,9 +295,13 @@ final class SearchViewController: UIViewController {
 
         searchField.text = searchTerm
         _ = searchField.resignFirstResponder()
-        viewModel.searchRepository(by: searchTerm)
         searchHistoryViewController.hide()
         searchHistoryEntry.searchedDate = Date()
+
+        // ugly hack, SearchField.text を更新すると 300 ms 後に検索がキャンセルされるのでその分遅らせる。
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.viewModel.searchRepository(by: searchTerm)
+        }
     }
 }
 
