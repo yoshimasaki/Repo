@@ -10,6 +10,14 @@ GitHub のリポジトリを検索できるクライアントアプリです。
 
 <br>
 
+## 環境
+
+- IDE：Xcode 12.4
+- Swift：Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+- 開発ターゲット：iOS 13.4 のまま変更せず (2021年4月の時点では iOS 13 も広く使われてるため)
+
+<br>
+
 ## 使用したライブラリ
 
 * [MarkdownView](https://github.com/keitaoouchi/MarkdownView)  
