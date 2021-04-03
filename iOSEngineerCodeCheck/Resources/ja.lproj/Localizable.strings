@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  iOSEngineerCodeCheck
+
+  Created by Yoshihisa Masaki on 2021/03/30.
+  Copyright © 2021 YUMEMI Inc. All rights reserved.
+*/
+
+"Search GitHub Repository" = "GitHubのリポジトリを検索";
+"Search Bookmarks" = "ブックマークを検索";
+"Bookmark it!" = "ブックマークしました！";
+"Already bookmark" = "ブックマーク済です";
+"Cannot make URL" = "URLを作れません";
+"Failed fetch" = "ロードに失敗しました";
+"HTTP error" = "HTTPエラー (%@)";
+"JSON decode failed" = "JSONのデコードに失敗";
