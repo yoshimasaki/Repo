@@ -41,7 +41,7 @@ final class RepositoryDetailCollectionDataSource {
             }
 
             cell.repositoryInfoView.repository = item.repository
-//            cell.readmePublisher = GitHubReadmePublisher.readmePublisher(for: item.repository)
+            cell.readmePublisher = GitHubReadmePublisher.readmePublisher(for: item.repository)
             cell.delegate = self?.repositoryDetailCellDelegate
 
             return cell
