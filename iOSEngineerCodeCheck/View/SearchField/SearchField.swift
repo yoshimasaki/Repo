@@ -56,6 +56,10 @@ final class SearchField: UIView {
         }
     }
 
+    override func resignFirstResponder() -> Bool {
+        textField.resignFirstResponder()
+    }
+
     private func configureViews() {
         let searchIcon = UIImage(systemName: "magnifyingglass")
         assert(searchIcon != nil, "Search icon does not exist in SF Symbols")
