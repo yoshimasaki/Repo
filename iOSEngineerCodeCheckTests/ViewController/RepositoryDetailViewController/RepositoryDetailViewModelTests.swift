@@ -12,17 +12,14 @@ import XCTest
 class RepositoryDetailViewModelTests: XCTestCase {
 
     var viewModel: RepositoryDetailViewModel!
-    var fetcher: MockURLFetcher!
 
     override func setUpWithError() throws {
-        self.fetcher = MockURLFetcher()
-        self.viewModel = RepositoryDetailViewModel(fetcher: self.fetcher)
+        self.viewModel = RepositoryDetailViewModel()
         self.viewModel.repositories = makeRepositories()
     }
 
     override func tearDownWithError() throws {
         self.viewModel = nil
-        self.fetcher = nil
     }
 
     func makeRepositories() -> [RepositoryEntity] {
