@@ -56,6 +56,10 @@
 		92F2F8F926169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F2F8F826169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift */; };
 		92F4C0C42612E0C2007C90AF /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F4C0C32612E09E007C90AF /* R.generated.swift */; };
 		92F4C0DB2612F8EB007C90AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92F4C0DA2612F8EB007C90AF /* Localizable.strings */; };
+		92F8B8052617EE2900E5B75C /* SearchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8042617EE2900E5B75C /* SearchHistoryViewController.swift */; };
+		92F8B80A2617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8092617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift */; };
+		92F8B80F2617EE5100E5B75C /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B80E2617EE5100E5B75C /* SearchHistoryViewModel.swift */; };
+		92F8B8142617EE6C00E5B75C /* SearchHistoryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8132617EE6C00E5B75C /* SearchHistoryEntryCell.swift */; };
 		92F934B22616A06E00AC6D1E /* URLRequest+UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */; };
 		92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B62616A08100AC6D1E /* UserAgent.swift */; };
 		92F934CE2616A37100AC6D1E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934CD2616A37100AC6D1E /* TabBarController.swift */; };
@@ -157,6 +161,10 @@
 		92F2F8F826169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewControllerDelegate.swift; sourceTree = "<group>"; };
 		92F4C0C32612E09E007C90AF /* R.generated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		92F4C0DA2612F8EB007C90AF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		92F8B8042617EE2900E5B75C /* SearchHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewController.swift; sourceTree = "<group>"; };
+		92F8B8092617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewControllerDelegate.swift; sourceTree = "<group>"; };
+		92F8B80E2617EE5100E5B75C /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
+		92F8B8132617EE6C00E5B75C /* SearchHistoryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryEntryCell.swift; sourceTree = "<group>"; };
 		92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+UserAgent.swift"; sourceTree = "<group>"; };
 		92F934B62616A08100AC6D1E /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		92F934CD2616A37100AC6D1E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -469,6 +477,7 @@
 		92F4C0D92612F81B007C90AF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				92F8B8002617ED7700E5B75C /* SearchHistoryViewController */,
 				92F934F12616D0A800AC6D1E /* TabBarItemNavigationController */,
 				92F934CC2616A34200AC6D1E /* TabBarController */,
 				92FBE50226135F19005E9B9A /* SearchViewController */,
@@ -488,6 +497,17 @@
 				92F934B62616A08100AC6D1E /* UserAgent.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		92F8B8002617ED7700E5B75C /* SearchHistoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				92F8B8042617EE2900E5B75C /* SearchHistoryViewController.swift */,
+				92F8B8092617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift */,
+				92F8B80E2617EE5100E5B75C /* SearchHistoryViewModel.swift */,
+				92F8B8132617EE6C00E5B75C /* SearchHistoryEntryCell.swift */,
+			);
+			path = SearchHistoryViewController;
 			sourceTree = "<group>";
 		};
 		92F934CC2616A34200AC6D1E /* TabBarController */ = {
@@ -911,6 +931,7 @@
 				92F935192616F65B00AC6D1E /* BookmarksViewModel.swift in Sources */,
 				92F934EA2616D08F00AC6D1E /* BookmarksViewController.swift in Sources */,
 				BFD945E3244DC5E80012785A /* SearchViewController.swift in Sources */,
+				92F8B8052617EE2900E5B75C /* SearchHistoryViewController.swift in Sources */,
 				92AFF4EB26167F3C00F0E6AB /* CenterPagingFlowLayout.swift in Sources */,
 				92AFF4F6261680A700F0E6AB /* TransitionSourceViewProvidable.swift in Sources */,
 				92F2F8F926169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift in Sources */,
@@ -918,7 +939,9 @@
 				92F934CE2616A37100AC6D1E /* TabBarController.swift in Sources */,
 				92F934DF2616CE0600AC6D1E /* TabBarItem.swift in Sources */,
 				9223D55D2617D8C0003A58E3 /* CircleButton.swift in Sources */,
+				92F8B80F2617EE5100E5B75C /* SearchHistoryViewModel.swift in Sources */,
 				92F934F92616D5D800AC6D1E /* Persistent.swift in Sources */,
+				92F8B8142617EE6C00E5B75C /* SearchHistoryEntryCell.swift in Sources */,
 				92FBE4EB26135363005E9B9A /* RepositoryDetailViewModel.swift in Sources */,
 				92FBE4F426135585005E9B9A /* RepositoryDetailViewModelError.swift in Sources */,
 				92F934DA2616CDF200AC6D1E /* TabBarItemProvidable.swift in Sources */,
@@ -942,6 +965,7 @@
 				923721DD261443C70082B90F /* SearchFieldModel.swift in Sources */,
 				923721EE261455570082B90F /* RepositoryCollectionViewDataSource.swift in Sources */,
 				92F9350D2616DB2B00AC6D1E /* RepositoryOwner+CoreDataClass.swift in Sources */,
+				92F8B80A2617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift in Sources */,
 				9244807C2613DA0E00A8DEF2 /* RepositoryEntity.swift in Sources */,
 				928DAFB026154CA400FBE3E4 /* RepositoryDetailCollectionDataSource.swift in Sources */,
 				927FC5482613E95800DC9812 /* URLFetchable.swift in Sources */,

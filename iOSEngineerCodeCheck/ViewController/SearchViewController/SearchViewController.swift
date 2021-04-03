@@ -17,6 +17,9 @@ final class SearchViewController: UIViewController {
     private let activityIndicator = UIActivityIndicatorView(style: .large)
     private let notificationView = NotificationView(frame: .zero)
 
+    private let searchHistoryViewController = SearchHistoryViewController()
+    private var searchHistoryViewBottomConstraint: NSLayoutConstraint!
+
     private let viewModel = SearchViewModel()
     private var subscriptions = Set<AnyCancellable>()
     private let collectionViewDataSource = RepositoryCollectionViewDataSource()
@@ -56,18 +59,31 @@ final class SearchViewController: UIViewController {
         navigationController?.delegate = self
 
         notificationView.isHidden = true
+
+        searchHistoryViewController.delegate = self
+        searchHistoryViewController.hide(animated: false)
     }
 
     private func configureConstraints() {
+        let searchHistoryView = searchHistoryViewController.view!
+
         searchField.translatesAutoresizingMaskIntoConstraints = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         notificationView.translatesAutoresizingMaskIntoConstraints = false
+        searchHistoryView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
         view.addSubview(searchField)
         view.addSubview(activityIndicator)
         view.addSubview(notificationView)
+
+        searchHistoryViewController.willMove(toParent: self)
+        addChild(searchHistoryViewController)
+        view.addSubview(searchHistoryView)
+        searchHistoryViewController.didMove(toParent: self)
+
+        searchHistoryViewBottomConstraint = searchHistoryView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 
         NSLayoutConstraint.activate([
             searchField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
@@ -83,7 +99,12 @@ final class SearchViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             notificationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            notificationView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            notificationView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            searchHistoryView.topAnchor.constraint(equalTo: searchField.bottomAnchor, constant: 16),
+            searchHistoryViewBottomConstraint,
+            searchHistoryView.leadingAnchor.constraint(equalTo: searchField.leadingAnchor),
+            searchHistoryView.trailingAnchor.constraint(equalTo: searchField.trailingAnchor)
         ])
     }
 
@@ -197,16 +218,22 @@ final class SearchViewController: UIViewController {
             break
 
         case .didBeginEditing:
-            break
+            guard searchHistoryViewController.hasHistoryEntry else {
+                return
+            }
+
+            searchHistoryViewController.show()
 
         case .didEndEditing:
-            break
+            searchHistoryViewController.hide()
 
         case .searchButtonClicked:
             guard let searchTerm = searchField.text else {
                 return
             }
+
             viewModel.searchRepository(by: searchTerm)
+            searchHistoryViewController.insertSearchHistoryEntry(searchTerm: searchTerm)
         }
     }
 
@@ -240,6 +267,17 @@ final class SearchViewController: UIViewController {
         // 副作用なのでここでするのは良くない。
         viewModel.lastSelectedItemIndexPath = indexPath
         scrollCellItem(to: indexPath, animated: animated)
+    }
+
+    private func search(with searchHistoryEntry: SearchHistoryEntry) {
+        guard let searchTerm = searchHistoryEntry.searchTerm else {
+            return
+        }
+
+        searchField.text = searchTerm
+        _ = searchField.resignFirstResponder()
+        viewModel.searchRepository(by: searchTerm)
+        searchHistoryViewController.hide()
     }
 }
 
@@ -286,5 +324,12 @@ extension SearchViewController: TabBarItemProvidable {
         assert(searchIcon != nil, "magnifyingglass is not exist in SF Symbols")
 
         return TabBarItem(icon: searchIcon!, title: "Search")
+    }
+}
+
+extension SearchViewController: SearchHistoryViewControllerDelegate {
+
+    func searchHistoryViewController(_ searchHistoryViewController: SearchHistoryViewController, didSelect searchHistoryEntry: SearchHistoryEntry) {
+        search(with: searchHistoryEntry)
     }
 }
