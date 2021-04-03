@@ -39,6 +39,7 @@ final class SearchViewController: UIViewController {
         subscribeError()
         subscribeSearchFieldText()
         subscribeSearchFieldState()
+        subscribeKeyboardHeight()
     }
 
     override func viewDidLayoutSubviews() {
@@ -173,6 +174,15 @@ final class SearchViewController: UIViewController {
             .store(in: &subscriptions)
     }
 
+    private func subscribeKeyboardHeight() {
+        KeyboardPublisher.heightPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (height) in
+                self?.handleKeyboardHeightChange(height)
+            }
+            .store(in: &subscriptions)
+    }
+
     private func handleState(_ state: SearchViewModelState) {
         switch state {
         case .none:
@@ -234,6 +244,15 @@ final class SearchViewController: UIViewController {
 
             viewModel.searchRepository(by: searchTerm)
             searchHistoryViewController.insertSearchHistoryEntry(searchTerm: searchTerm)
+        }
+    }
+
+    private func handleKeyboardHeightChange(_ height: CGFloat) {
+        view.layoutIfNeeded()
+        searchHistoryViewBottomConstraint.constant = -height
+
+        UIView.animate(withDuration: 0.18) {
+            self.view.layoutIfNeeded()
         }
     }
 
