@@ -60,6 +60,7 @@
 		92F8B80A2617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8092617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift */; };
 		92F8B80F2617EE5100E5B75C /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B80E2617EE5100E5B75C /* SearchHistoryViewModel.swift */; };
 		92F8B8142617EE6C00E5B75C /* SearchHistoryEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8132617EE6C00E5B75C /* SearchHistoryEntryCell.swift */; };
+		92F8B8192617EF7C00E5B75C /* KeyboardPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8B8182617EF7C00E5B75C /* KeyboardPublisher.swift */; };
 		92F934B22616A06E00AC6D1E /* URLRequest+UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */; };
 		92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934B62616A08100AC6D1E /* UserAgent.swift */; };
 		92F934CE2616A37100AC6D1E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F934CD2616A37100AC6D1E /* TabBarController.swift */; };
@@ -165,6 +166,7 @@
 		92F8B8092617EE3800E5B75C /* SearchHistoryViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewControllerDelegate.swift; sourceTree = "<group>"; };
 		92F8B80E2617EE5100E5B75C /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
 		92F8B8132617EE6C00E5B75C /* SearchHistoryEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryEntryCell.swift; sourceTree = "<group>"; };
+		92F8B8182617EF7C00E5B75C /* KeyboardPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardPublisher.swift; sourceTree = "<group>"; };
 		92F934B12616A06E00AC6D1E /* URLRequest+UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+UserAgent.swift"; sourceTree = "<group>"; };
 		92F934B62616A08100AC6D1E /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		92F934CD2616A37100AC6D1E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				9237220026146E280082B90F /* ImagePublisher.swift */,
 				928DAFD726156EBC00FBE3E4 /* GitHubReadmePublisher.swift */,
 				92F934B62616A08100AC6D1E /* UserAgent.swift */,
+				92F8B8182617EF7C00E5B75C /* KeyboardPublisher.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -935,6 +938,7 @@
 				92AFF4EB26167F3C00F0E6AB /* CenterPagingFlowLayout.swift in Sources */,
 				92AFF4F6261680A700F0E6AB /* TransitionSourceViewProvidable.swift in Sources */,
 				92F2F8F926169C60003130B0 /* RepositoryDetailViewControllerDelegate.swift in Sources */,
+				92F8B8192617EF7C00E5B75C /* KeyboardPublisher.swift in Sources */,
 				92F934B72616A08100AC6D1E /* UserAgent.swift in Sources */,
 				92F934CE2616A37100AC6D1E /* TabBarController.swift in Sources */,
 				92F934DF2616CE0600AC6D1E /* TabBarItem.swift in Sources */,
