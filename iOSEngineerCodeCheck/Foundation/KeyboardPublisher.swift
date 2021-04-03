@@ -26,7 +26,7 @@ public enum KeyboardPublisher {
     public static let framePublisher: AnyPublisher<CGRect, Never> = {
         KeyboardPublisher.didShowPublisher
             .merge(with: KeyboardPublisher.didChangeFramePublisher)
-            .map { $0.userInfo![UIResponder.keyboardFrameEndUserInfoKey]! as! CGRect }
+            .map { $0.userInfo![UIResponder.keyboardFrameEndUserInfoKey]! as? CGRect ?? .zero }
             .eraseToAnyPublisher()
     }()
 
