@@ -297,6 +297,7 @@ final class SearchViewController: UIViewController {
         _ = searchField.resignFirstResponder()
         viewModel.searchRepository(by: searchTerm)
         searchHistoryViewController.hide()
+        searchHistoryEntry.searchedDate = Date()
     }
 }
 
