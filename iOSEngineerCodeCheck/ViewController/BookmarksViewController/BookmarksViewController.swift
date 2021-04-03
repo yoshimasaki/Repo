@@ -217,6 +217,18 @@ extension BookmarksViewController: UICollectionViewDelegate {
         viewModel.lastSelectedItemIndexPath = indexPath
         transitionToDetailView()
     }
+
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (_) -> UIMenu? in
+
+            let deleteAction = UIAction(title: R.string.localizable.deleteBookmark(), image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] (_) in
+                self?.viewModel.deleteBookmark(at: indexPath)
+            }
+
+            return UIMenu(children: [deleteAction])
+        }
+    }
 }
 
 extension BookmarksViewController: UICollectionViewDataSource {

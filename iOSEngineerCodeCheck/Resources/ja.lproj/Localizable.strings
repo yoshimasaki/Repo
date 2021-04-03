@@ -14,3 +14,4 @@
 "Failed fetch" = "ロードに失敗しました";
 "HTTP error" = "HTTPエラー (%@)";
 "JSON decode failed" = "JSONのデコードに失敗";
+"Delete Bookmark" = "ブックマークを削除";
